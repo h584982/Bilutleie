@@ -3,7 +3,7 @@ package bilutleie;
 public class Bilutleieselskap {
 
 	private String navn;
-	private String telefonnummer;
+	private int telefonnummer;
 	private String firmaAdresse;
 	
 	
