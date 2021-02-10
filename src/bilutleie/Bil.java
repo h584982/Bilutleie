@@ -2,18 +2,27 @@ package bilutleie;
 
 public class Bil {
 
-	private int registreringsnummer;
+	private String registreringsnummer;
 	private String merke;
 	private String modell;
 	private String farge;
 	private char utleiegruppe;
 	private boolean ledig;
+	
+	public Bil(String registreringsnummer, String merke, String modell, String farge, char utleiegruppe, boolean ledig) {
+		this.registreringsnummer = registreringsnummer;
+		this.merke = merke;
+		this.modell = modell;
+		this.farge = farge;
+		this.utleiegruppe = utleiegruppe;
+		this.ledig = ledig;
+	}
 
-	public int getRegistreringsnummer() {
+	public String getRegistreringsnummer() {
 		return registreringsnummer;
 	}
 
-	public void setRegistreringsnummer(int registreringsnummer) {
+	public void setRegistreringsnummer(String registreringsnummer) {
 		this.registreringsnummer = registreringsnummer;
 	}
 
