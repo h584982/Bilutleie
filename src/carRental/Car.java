@@ -2,68 +2,68 @@ package carRental;
 
 public class Car {
 
-	private String registreringsnummer;
-	private String merke;
-	private String modell;
-	private String farge;
-	private char utleiegruppe;
-	private boolean ledig;
-	
-	public Car(String registreringsnummer, String merke, String modell, String farge, char utleiegruppe, boolean ledig) {
-		this.registreringsnummer = registreringsnummer;
-		this.merke = merke;
-		this.modell = modell;
-		this.farge = farge;
-		this.utleiegruppe = utleiegruppe;
-		this.ledig = ledig;
+	private String registrationNumber;
+	private String brand;
+	private String model;
+	private String color;
+	private char rentalGroup;
+	private boolean available;
+
+	public Car(String registrationNumber, String brand, String model, String color, char rentalGroup, boolean available) {
+		this.registrationNumber = registrationNumber;
+		this.brand = brand;
+		this.model = model;
+		this.color = color;
+		this.rentalGroup = rentalGroup;
+		this.available = available;
 	}
 
-	public String getRegistreringsnummer() {
-		return registreringsnummer;
+	public String getRegistrationNumber() {
+		return registrationNumber;
 	}
 
-	public void setRegistreringsnummer(String registreringsnummer) {
-		this.registreringsnummer = registreringsnummer;
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
 	}
 
-	public String getMerke() {
-		return merke;
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setMerke(String merke) {
-		this.merke = merke;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
-	public String getModell() {
-		return modell;
+	public String getModel() {
+		return model;
 	}
 
-	public void setModell(String modell) {
-		this.modell = modell;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getFarge() {
-		return farge;
+	public String getColor() {
+		return color;
 	}
 
-	public void setFarge(String farge) {
-		this.farge = farge;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
-	public char getUtleiegruppe() {
-		return utleiegruppe;
+	public char getRentalGroup() {
+		return rentalGroup;
 	}
 
-	public void setUtleiegruppe(char utleiegruppe) {
-		this.utleiegruppe = utleiegruppe;
+	public void setRentalGroup(char rentalGroup) {
+		this.rentalGroup = rentalGroup;
 	}
 
-	public boolean isLedig() {
-		return ledig;
+	public boolean isAvailable() {
+		return available;
 	}
 
-	public void setLedig(boolean ledig) {
-		this.ledig = ledig;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 }

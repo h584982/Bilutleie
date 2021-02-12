@@ -7,12 +7,11 @@
 
 public class RentalOffice {
 
-	
 		public static void main(String[] args) {
 			
 			Scanner scanner = new Scanner(System.in);
 			
-			List<Car> biler = Arrays.asList(
+			List<Car> cars = Arrays.asList(
 				 new Car("EV99999", "Tesla", "Model S" , "Rød" , 'B', true),
 				 new Car("EV99998", "Tesla", "Model X" , "Hvit" , 'A', true)
 				 );
@@ -22,40 +21,40 @@ public class RentalOffice {
 			System.out.println("Velkommen til bilutleie. Skriv inn hvilket bilmerke du vil leie:");
 			
 			//sjekke alle bilmerker og skriver de ut
-			System.out.println(biler.stream()  
-					.map(Car::getMerke)
+			System.out.println(cars.stream()  
+					.map(Car::getModel)
 					.distinct()
 					.collect(Collectors.joining("\n")));
 			
-			String bilmerke=scanner.nextLine();
+			String carBrand=scanner.nextLine();
 			
 			
-	//		while(!biler.stream()  
-	//				.map(Bil::getMerke)
+	//		while(!cars.stream()  
+	//				.map(Car::getBrand)
 	//				.distinct()
-	//				.collect(Collectors.joining("\n")).contains(bilmerke)){
+	//				.collect(Collectors.joining("\n")).contains(carBrand)){
 	//			System.out.println("Skriv inn et bilmerke som er tilgjengelig.");
-	//			 bilmerke=scanner.nextLine();
+	//			 carBrand=scanner.nextLine();
 	//			}
 			
 			System.out.println("Skriv inn hvilken bilmodell du vil leie:");
 			
 			//sjekke alle modeller til bilmerket og skrive de ut
-			System.out.println(biler.stream()
-					.filter(a->a.getMerke().equals(bilmerke))   
-					.map(Car::getModell)
+			System.out.println(cars.stream()
+					.filter(a->a.getBrand().equals(carBrand))   
+					.map(Car::getModel)
 					.collect(Collectors.joining("\n")));
-			String bilmodell=scanner.nextLine();
+			String carModel=scanner.nextLine();
 			
 		
 			System.out.println("Skriv inn hvilken farge på bilen du vil leie:");
 			
 			//sjekke alle farger til valgt modell
-			System.out.println(biler.stream()
-					.filter(a->a.getMerke().equals(bilmerke) && a.getModell().equals(bilmodell))   
-					.map(Car::getFarge)
+			System.out.println(cars.stream()
+					.filter(a->a.getBrand().equals(carBrand) && a.getModel().equals(carModel))   
+					.map(Car::getColor)
 					.collect(Collectors.joining("\n")));
-			String bilfarge=scanner.nextLine();
+			String carColor=scanner.nextLine();
 			
 			
 			System.out.println("Leier ut bil ");
