@@ -22,7 +22,7 @@ public class RentalOffice {
 			
 			//sjekke alle bilmerker og skriver de ut
 			System.out.println(cars.stream()  
-					.map(Car::getModel)
+					.map(Car::getBrand)
 					.distinct()
 					.collect(Collectors.joining("\n")));
 			
