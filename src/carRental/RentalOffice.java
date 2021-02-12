@@ -1,20 +1,20 @@
-	package bilutleie;
+	package carRental;
 
 	import java.util.Arrays;
 	import java.util.List;
 	import java.util.Scanner;
 	import java.util.stream.Collectors;
 
-public class Utleiekontor {
+public class RentalOffice {
 
 	
 		public static void main(String[] args) {
 			
 			Scanner scanner = new Scanner(System.in);
 			
-			List<Bil> biler = Arrays.asList(
-				 new Bil("EV99999", "Tesla", "Model S" , "Rød" , 'B', true),
-				 new Bil("EV99998", "Tesla", "Model X" , "Hvit" , 'A', true)
+			List<Car> biler = Arrays.asList(
+				 new Car("EV99999", "Tesla", "Model S" , "Rød" , 'B', true),
+				 new Car("EV99998", "Tesla", "Model X" , "Hvit" , 'A', true)
 				 );
 			
 			//public void leieutSetup ()
@@ -23,7 +23,7 @@ public class Utleiekontor {
 			
 			//sjekke alle bilmerker og skriver de ut
 			System.out.println(biler.stream()  
-					.map(Bil::getMerke)
+					.map(Car::getMerke)
 					.distinct()
 					.collect(Collectors.joining("\n")));
 			
@@ -43,7 +43,7 @@ public class Utleiekontor {
 			//sjekke alle modeller til bilmerket og skrive de ut
 			System.out.println(biler.stream()
 					.filter(a->a.getMerke().equals(bilmerke))   
-					.map(Bil::getModell)
+					.map(Car::getModell)
 					.collect(Collectors.joining("\n")));
 			String bilmodell=scanner.nextLine();
 			
@@ -53,7 +53,7 @@ public class Utleiekontor {
 			//sjekke alle farger til valgt modell
 			System.out.println(biler.stream()
 					.filter(a->a.getMerke().equals(bilmerke) && a.getModell().equals(bilmodell))   
-					.map(Bil::getFarge)
+					.map(Car::getFarge)
 					.collect(Collectors.joining("\n")));
 			String bilfarge=scanner.nextLine();
 			

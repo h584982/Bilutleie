@@ -1,6 +1,6 @@
-package bilutleie;
+package carRental;
 
-public class Bil {
+public class Car {
 
 	private String registreringsnummer;
 	private String merke;
@@ -9,7 +9,7 @@ public class Bil {
 	private char utleiegruppe;
 	private boolean ledig;
 	
-	public Bil(String registreringsnummer, String merke, String modell, String farge, char utleiegruppe, boolean ledig) {
+	public Car(String registreringsnummer, String merke, String modell, String farge, char utleiegruppe, boolean ledig) {
 		this.registreringsnummer = registreringsnummer;
 		this.merke = merke;
 		this.modell = modell;

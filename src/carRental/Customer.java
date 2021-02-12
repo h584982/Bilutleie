@@ -1,6 +1,6 @@
-package bilutleie;
+package carRental;
 
-public class Kunde {
+public class Customer {
 	
 	private String fornavn;
 	private String etternavn;

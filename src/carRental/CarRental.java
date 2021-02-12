@@ -1,6 +1,6 @@
-package bilutleie;
+package carRental;
 
-public class Bilutleieselskap {
+public class CarRental {
 
 	private String navn;
 	private int telefonnummer;

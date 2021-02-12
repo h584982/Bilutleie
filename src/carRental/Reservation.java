@@ -1,6 +1,6 @@
-package bilutleie;
+package carRental;
 
-public class Reservasjon {
+public class Reservation {
 
 	private String utleiested;
 	private String dato;
