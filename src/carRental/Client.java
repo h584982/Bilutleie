@@ -61,7 +61,8 @@ public class Client { //main method
                 LocalDateTime deliveryDate = null;
 
 
-                boolean madeReservation = false;
+                Reservation reservation = null;
+
                 int reservationID= carRental.giveNextReservationID();
                 do {
                     // Get random car from carPark
@@ -121,10 +122,10 @@ public class Client { //main method
                     }
 */
 
-                    madeReservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate);
+                   reservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate);
 
-                } while(!madeReservation);
-
+                } while(reservation == null);
+                carRental.getReservationsMap().put(reservation.getReservationId(), reservation);
             }
 
 
