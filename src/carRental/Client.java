@@ -20,7 +20,7 @@ public class Client { //main method
         // - search via internet , with existing costumer
         // - rental office clerk , no customer
 
-        // pickup car event -
+        // pickup car event - prompt user for location and reservation id
         // drop off event -
 
         // helpmethods
@@ -110,6 +110,7 @@ public class Client { //main method
                     }
 
                     deliveryDate = new Date( returnYear, returnMonth, returnDate, returnHour, returnMin );
+
 
                     madeReservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate );
 
