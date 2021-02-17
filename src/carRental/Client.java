@@ -28,6 +28,8 @@ public class Client { //main method
 
 
 
+
+
     private static List<String> streets = new ArrayList<String>((
             List.of("Kvalvåglia ", "Nord-Villen ", "Meieriveien ", "Brandts gate ", "Rimfakses vei ", "Klokkersmauet ", "Gislebakken ", "Kongens gate ", "Carsten E. Rosenvinges veg ", "Herføllbakken ", "Furras gate ", "Skoglien ", "Hjortefaret ", " Munkegaten ", "Olav Kyrres gate  ")));
 
@@ -104,7 +106,7 @@ public class Client { //main method
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString().toUpperCase() + String.format("%05d", random.nextInt(100000));
         String brand = carKeyMap.get(random.nextInt(carKeyMap.size()));
-        String  model= cars.get(brand).get(random.nextInt(cars.get(brand).size()));
+        String  model = cars.get(brand).get(random.nextInt(cars.get(brand).size()));
 
         String color = colors.get(random.nextInt(colors.size()));
 
