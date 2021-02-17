@@ -1,8 +1,7 @@
 package carRental;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 
 public class CarRental {
 
@@ -11,6 +10,7 @@ public class CarRental {
 	private ArrayList<Customer> customers;
 	private ArrayList<RentalOffice> offices;
 	private Address address;
+	private HashMap<Integer,Reservation> reservationsMap;
 	private int nextReservationID;
 	
 	public CarRental(String name, int phoneNumber, ArrayList<Customer> customers, ArrayList<RentalOffice> offices,
@@ -22,6 +22,7 @@ public class CarRental {
 		this.offices = offices;
 		this.address = address;
 		this.nextReservationID = 0;
+		this.reservationsMap = new HashMap<>();
 	}
 
 	public int giveNextReservationID(){
@@ -47,21 +48,41 @@ public class CarRental {
 	}
 	
 	private ArrayList<RentalOffice> findOffices(String location){
-		// TODO
-		return null;
+		ArrayList<RentalOffice> locations = new ArrayList<RentalOffice>();
+		for(RentalOffice office : this.getOffices()){
+			if (office.getAddress().getCity().toLowerCase().equals(location.toLowerCase())) {
+				locations.add(office);
+			}
+		}
+		return locations;
 	}
 	
-	private ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime time){
-		// TODO
-		return null;
+	private ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate){
+
+
+		Set<Car> carSet = new HashSet<>(office.getCarPark());
+		for(Reservation reservation : office.getReservations()){
+			if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate()) ){
+				if(delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())){
+					carSet.remove(reservation.getCar());
+
+				}
+			}
+
+
+		}
+
+		return  new ArrayList<>(carSet);
+
 	}
 	
 	private void presentCars() {
 		//TODO
 	}
 	
-	public boolean pickUpCar(String location, int reservationId) {
-		// TODO
+	public boolean pickUpCar(String location, int reservationID) {
+
+
 		return true;
 	}
 	
