@@ -104,7 +104,7 @@ public class Client { //main method
                 .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
                 .toString().toUpperCase() + String.format("%05d", random.nextInt(100000));
         String brand = carKeyMap.get(random.nextInt(carKeyMap.size()));
-        String  model= cars.get(brand).get(random.nextInt(cars.get(brand).size()));
+        String model= cars.get(brand).get(random.nextInt(cars.get(brand).size()));
 
         String color = colors.get(random.nextInt(colors.size()));
 
