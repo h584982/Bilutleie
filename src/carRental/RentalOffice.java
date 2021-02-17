@@ -2,29 +2,25 @@ package carRental;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class RentalOffice {
 	
 	
 	private int officeId;
-	private Address adress;
+	private Address address;
 	private int phoneNumber;
 	private ArrayList<Car> carPark;
 	private ArrayList<Reservation> reservations;
 	private ArrayList<Reservation> reservationArchive;
 	private HashMap priceMap;
 	
-	public RentalOffice(int officeId, Address adress, int phoneNumber, ArrayList<Car> carPark,
+	public RentalOffice(int officeId, Address address, int phoneNumber, ArrayList<Car> carPark,
 			ArrayList<Reservation> reservations, ArrayList<Reservation> reservationArchive, HashMap priceMap) {
 		super();
 		this.officeId = officeId;
-		this.adress = adress;
+		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.carPark = carPark;
 		this.reservations = reservations;
@@ -57,11 +53,11 @@ public class RentalOffice {
 	public void setOfficeId(int officeId) {
 		this.officeId = officeId;
 	}
-	public Address getAdress() {
-		return adress;
+	public Address getAddress() {
+		return address;
 	}
-	public void setAdress(Address adress) {
-		this.adress = adress;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public int getPhoneNumber() {
 		return phoneNumber;
