@@ -40,7 +40,7 @@ public class RentalOffice {
 		return null;
 	}
 	
-	public boolean createReservation(Car car, Customer customer, Date time) {
+	public boolean createReservation(Car car, Customer customer, Date pickupDate, Date deliveryDate) {
 		// TODO
 		return true;
 	}
