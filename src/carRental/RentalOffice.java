@@ -37,9 +37,10 @@ public class RentalOffice {
 		return null;
 	}
 	
-	public boolean createReservation(Integer reservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime deliveryDate) {
+	public Reservation createReservation(Integer reservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime deliveryDate) {
 		// TODO
-		return true;
+		Reservation reservation = null;
+		return reservation;
 	}
 	
 	public int calculatePrice() {
