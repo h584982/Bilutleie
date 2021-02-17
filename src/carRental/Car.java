@@ -2,68 +2,87 @@ package carRental;
 
 public class Car {
 
-	private String registrationNumber;
-	private String brand;
-	private String model;
+	private String registrationId;
+	private String carBrand;
+	private String carModel;
 	private String color;
-	private char rentalGroup;
-	private boolean available;
-
-	public Car(String registrationNumber, String brand, String model, String color, char rentalGroup, boolean available) {
-		this.registrationNumber = registrationNumber;
-		this.brand = brand;
-		this.model = model;
+	private char carClassification;
+	private int milage;
+	
+	
+	public Car(String registrationId, String carBrand, String carModel, String color, char carClassification,
+			int milage) {
+		super();
+		this.registrationId = registrationId;
+		this.carBrand = carBrand;
+		this.carModel = carModel;
 		this.color = color;
-		this.rentalGroup = rentalGroup;
-		this.available = available;
+		this.carClassification = carClassification;
+		this.milage = milage;
 	}
 
-	public String getRegistrationNumber() {
-		return registrationNumber;
+
+	public String getRegistrationId() {
+		return registrationId;
 	}
 
-	public void setRegistrationNumber(String registrationNumber) {
-		this.registrationNumber = registrationNumber;
+
+	public void setRegistrationId(String registrationId) {
+		this.registrationId = registrationId;
 	}
 
-	public String getBrand() {
-		return brand;
+
+	public String getCarBrand() {
+		return carBrand;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
+
+	public void setCarBrand(String carBrand) {
+		this.carBrand = carBrand;
 	}
 
-	public String getModel() {
-		return model;
+
+	public String getCarModel() {
+		return carModel;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
 	}
+
 
 	public String getColor() {
 		return color;
 	}
 
+
 	public void setColor(String color) {
 		this.color = color;
 	}
 
-	public char getRentalGroup() {
-		return rentalGroup;
+
+	public char getCarClassification() {
+		return carClassification;
 	}
 
-	public void setRentalGroup(char rentalGroup) {
-		this.rentalGroup = rentalGroup;
+
+	public void setCarClassification(char carClassification) {
+		this.carClassification = carClassification;
 	}
 
-	public boolean isAvailable() {
-		return available;
+
+	public int getMilage() {
+		return milage;
 	}
 
-	public void setAvailable(boolean available) {
-		this.available = available;
+
+	public void setMilage(int milage) {
+		this.milage = milage;
 	}
+	
+	
+
+	
 
 }
