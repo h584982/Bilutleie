@@ -10,6 +10,7 @@ public class CarRental {
 	private ArrayList<Customer> customers;
 	private ArrayList<RentalOffice> offices;
 	private Address address;
+	private int nextReservationID;
 	
 	public CarRental(String name, int phoneNumber, ArrayList<Customer> customers, ArrayList<RentalOffice> offices,
 			Address address) {
@@ -19,6 +20,13 @@ public class CarRental {
 		this.customers = customers;
 		this.offices = offices;
 		this.address = address;
+		this.nextReservationID = 0;
+	}
+
+	public int giveNextReservationID(){
+
+		return this.nextReservationID++;
+
 	}
 	
 	public CarRental() {
