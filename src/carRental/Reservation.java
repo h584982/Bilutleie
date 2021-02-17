@@ -1,6 +1,6 @@
 package carRental;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Reservation {
 
@@ -8,26 +8,26 @@ public class Reservation {
 	private Customer customer;
 	private int pickUpOffice;
 	private int dropOffOffice;
-	private Date startTime;
-	private Date endTime;
+	private LocalDateTime pickUpDate;
+	private LocalDateTime deliveryDueDate;
 	private Car car;
 	private int startMilage;
 	private int endMilage;
-	private Date dropOffDate;
+	private LocalDateTime dropOffDate;
 	private boolean isPaid;
 	
 	
 	
 	
-	public Reservation(int reservationId, Customer customer, int pickUpOffice, int dropOffOffice, Date startTime,
-			Date endTime, Car car, int startMilage, int endMilage, Date dropOffDate, boolean isPaid) {
+	public Reservation(int reservationId, Customer customer, int pickUpOffice, int dropOffOffice, LocalDateTime pickUpDate,
+					   LocalDateTime deliveryDueDate, Car car, int startMilage, int endMilage, LocalDateTime dropOffDate, boolean isPaid) {
 		super();
 		this.reservationId = reservationId;
 		this.customer = customer;
 		this.pickUpOffice = pickUpOffice;
 		this.dropOffOffice = dropOffOffice;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.pickUpDate = pickUpDate;
+		this.deliveryDueDate = deliveryDueDate;
 		this.car = car;
 		this.startMilage = startMilage;
 		this.endMilage = endMilage;
@@ -68,17 +68,17 @@ public class Reservation {
 	public void setDropOffOffice(int dropOffOffice) {
 		this.dropOffOffice = dropOffOffice;
 	}
-	public Date getStartTime() {
-		return startTime;
+	public LocalDateTime getPickUpDate() {
+		return pickUpDate;
 	}
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
+	public void setPickUpDate(LocalDateTime pickUpDate) {
+		this.pickUpDate = pickUpDate;
 	}
-	public Date getEndTime() {
-		return endTime;
+	public LocalDateTime getDeliveryDueDate() {
+		return deliveryDueDate;
 	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setDeliveryDueDate(LocalDateTime deliveryDueDate) {
+		this.deliveryDueDate = deliveryDueDate;
 	}
 	public Car getCar() {
 		return car;
@@ -98,10 +98,10 @@ public class Reservation {
 	public void setEndMilage(int endMilage) {
 		this.endMilage = endMilage;
 	}
-	public Date getDropOffDate() {
+	public LocalDateTime getDropOffDate() {
 		return dropOffDate;
 	}
-	public void setDropOffDate(Date dropOffDate) {
+	public void setDropOffDate(LocalDateTime dropOffDate) {
 		this.dropOffDate = dropOffDate;
 	}
 	public boolean isPaid() {
