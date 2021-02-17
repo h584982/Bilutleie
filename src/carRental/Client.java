@@ -3,12 +3,13 @@ package carRental;
 import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.*;
 
 public class Client { //main method
     static Random random = new Random();
+    final static int maxReservationLength = 1;
 
 
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class Client { //main method
 
         setupCarRental();
 
-        // TODO: Meny system
+        // TODO: Menu system
         // - search via internet , with existing costumer
         // - rental office clerk , no customer
 
@@ -26,6 +27,10 @@ public class Client { //main method
         // helpmethods
         // createAddress - customer
 
+        LocalDateTime now = LocalDateTime.now().plusDays(random.nextInt(364)).plusHours(random.nextInt(24));
+        System.out.println(now.toString());
+        LocalDateTime future = now.plusDays(random.nextInt(maxReservationLength)).plusHours(random.nextInt(24));
+        System.out.println(future);
 
 
     }
@@ -52,8 +57,8 @@ public class Client { //main method
 
                 Car car = null;
                 Customer customer = null;
-                Date pickupDate = null;
-                Date deliveryDate = null;
+                LocalDateTime pickupDate;
+                LocalDateTime deliveryDate = null;
 
 
                 boolean madeReservation = false;
@@ -65,15 +70,21 @@ public class Client { //main method
                     customer = carRental.getCustomers().get(random.nextInt(carRental.getCustomers().size()));
 
                     // get random startDate
-                    int year = random.nextInt(2) + 2021;
-                    int month = random.nextInt(11)+ 1;
-                    int date = random.nextInt(27) + 1;
-                    int hour = random.nextInt(23);
-                    int min = random.nextInt(59);
+                    pickupDate = LocalDateTime.now().plusDays(random.nextInt(364) + 1);
 
-                    pickupDate = new Date( year, month, date, hour, min );
+/*
+                      int year = random.nextInt(2) + 2021;
+                      int month = random.nextInt(11)+ 1;
+                      int date = random.nextInt(27) + 1;
+                      int hour = random.nextInt(23);
+                      int min = random.nextInt(59);
+*/
+
 
                     // get random endDate
+                    deliveryDate = pickupDate.plusDays(random.nextInt(maxReservationLength));
+
+/*
                     int returnYear = random.nextInt(1) + year;
 
                     int returnMonth;
@@ -108,11 +119,9 @@ public class Client { //main method
                     } else {
                         returnMin = random.nextInt(59);
                     }
+*/
 
-                    deliveryDate = new Date( returnYear, returnMonth, returnDate, returnHour, returnMin );
-
-
-                    madeReservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate );
+                    madeReservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate);
 
                 } while(!madeReservation);
 
