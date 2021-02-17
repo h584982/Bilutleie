@@ -13,19 +13,54 @@ public class Client { //main method
 
     public static void main(String[] args) {
 
-       populateCarMap();
-       CarRental carRental = new CarRental();
-        //ArrayList customers = carRental.getCustomers();
-       for(int i = 0 ; i < random.nextInt(100000); i++){
-           //customers.append(randomCustomer());
+        populateCarMap();
+        CarRental carRental = new CarRental("Joe's Garage", 23502350, new ArrayList<Customer>(), new ArrayList<RentalOffice>(), randomAddress());
+
+        // Populate customers
+
+        int  customerAmount = random.nextInt(10000)+100;
+        for(int i = 0; i < customerAmount; i++){
+           carRental.getCustomers().add(randomCustomer());
        }
-       //ArrayList rentalOffices = carRental.getRentalOffices();
-       for(int i = 0 ; i  < random.nextInt(20); i++){
-            //rentalOffices.append(randomOffice());
-       }
+
+
+        for(int i = 0 ; i  < random.nextInt(20) + 5; i++){
+            carRental.getOffices().add(randomOffice(i + 1));
+        }
+
+
 
     }
 
+
+    private static RentalOffice randomOffice(int officeID){
+
+        Address address = randomAddress();
+
+        int phone = random.nextInt(90000000)+10000000;
+
+
+
+        ArrayList<Car> carPark = new ArrayList<>();
+        int amountOfCars = random.nextInt(140)+10;
+        for( int i = 0 ; i < amountOfCars ; i++) {
+            carPark.add(randomCar());
+        }
+
+
+        ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+        ArrayList<Reservation> reservationArchive = new ArrayList<Reservation>();
+
+        HashMap priceMap = new HashMap<Character,Integer>();
+        priceMap.put('A',  random.nextInt(1000)+500);
+        priceMap.put('B', random.nextInt(1000)+1000);
+        priceMap.put('C', random.nextInt(1000)+1500);
+        priceMap.put('D', random.nextInt(1000)+2000);
+
+
+
+        return new RentalOffice(officeID, address, phone, carPark, reservations, reservationArchive, priceMap);
+    }
 
 
     private static List<String> streets = new ArrayList<String>((
