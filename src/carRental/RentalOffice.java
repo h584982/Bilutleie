@@ -1,5 +1,6 @@
 package carRental;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -40,7 +41,7 @@ public class RentalOffice {
 		return null;
 	}
 	
-	public boolean createReservation(Integer reservationID, Car car, Customer customer, Date pickupDate, Date deliveryDate) {
+	public boolean createReservation(Integer reservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime deliveryDate) {
 		// TODO
 		return true;
 	}
