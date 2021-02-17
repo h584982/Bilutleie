@@ -3,7 +3,7 @@ package carRental;
 import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.*;
 
@@ -16,7 +16,7 @@ public class Client { //main method
 
         setupCarRental();
 
-        // TODO: Meny system
+        // TODO: Menu system
         // - search via internet , with existing costumer
         // - rental office clerk , no customer
 
@@ -26,6 +26,10 @@ public class Client { //main method
         // helpmethods
         // createAddress - customer
 
+        LocalDateTime now = LocalDateTime.now().plusDays(random.nextInt(364)).plusHours(random.nextInt(24));
+        System.out.println(now.toString());
+        LocalDateTime future = now.plusDays(random.nextInt(12) + 1).plusHours(random.nextInt(24));
+        System.out.println(future);
 
 
     }
