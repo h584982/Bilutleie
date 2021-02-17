@@ -6,7 +6,7 @@ public class Customer {
 	private String lastName;
 	private Address address; 
 	private int phoneNumber;
-	private int cardNumber;
+	private Integer cardNumber;
 	
 	public Customer(String firstName, String lastName, Address address, int phoneNumber, int cardNumber) {
 		super();
@@ -15,6 +15,14 @@ public class Customer {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.cardNumber = cardNumber;
+	}
+	public Customer(String firstName, String lastName, Address address, int phoneNumber) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.cardNumber = null;
 	}
 	
 	public Customer () {
