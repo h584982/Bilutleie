@@ -1,12 +1,100 @@
 package carRental;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RentalOffice {
-
+	
+	
+	private int officeId;
+	private Address adress;
+	private int phoneNumber;
+	private ArrayList<Car> carPark;
+	private ArrayList<Reservation> reservations;
+	private ArrayList<Reservation> reservationArchive;
+	private HashMap priceMap;
+	
+	public RentalOffice(int officeId, Address adress, int phoneNumber, ArrayList<Car> carPark,
+			ArrayList<Reservation> reservations, ArrayList<Reservation> reservationArchive, HashMap priceMap) {
+		super();
+		this.officeId = officeId;
+		this.adress = adress;
+		this.phoneNumber = phoneNumber;
+		this.carPark = carPark;
+		this.reservations = reservations;
+		this.reservationArchive = reservationArchive;
+		this.priceMap = priceMap;
+	}
+	
+	public RentalOffice() {
+		
+	}
+	
+	public Car[] searchCars(Date time) {
+		// TODO
+		return null;
+	}
+	
+	public boolean createReservation(Car car, Customer customer, Date time) {
+		// TODO
+		return true;
+	}
+	
+	public int calculatePrice() {
+		// TODO
+		return 0;
+	}
+	
+	public int getOfficeId() {
+		return officeId;
+	}
+	public void setOfficeId(int officeId) {
+		this.officeId = officeId;
+	}
+	public Address getAdress() {
+		return adress;
+	}
+	public void setAdress(Address adress) {
+		this.adress = adress;
+	}
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public ArrayList<Car> getCarPark() {
+		return carPark;
+	}
+	public void setCarPark(ArrayList<Car> carPark) {
+		this.carPark = carPark;
+	}
+	public ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
+	public void setReservations(ArrayList<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+	public ArrayList<Reservation> getReservationArchive() {
+		return reservationArchive;
+	}
+	public void setReservationArchive(ArrayList<Reservation> reservationArchive) {
+		this.reservationArchive = reservationArchive;
+	}
+	public HashMap getPriceMap() {
+		return priceMap;
+	}
+	public void setPriceMap(HashMap priceMap) {
+		this.priceMap = priceMap;
+	}
+	
+	
+/*
 	Scanner scanner = new Scanner(System.in);
 
 	List<Car> cars = Arrays.asList(
@@ -52,5 +140,6 @@ public class RentalOffice {
 		System.out.println("Leier ut bil ");
 
 	}
+	*/
 }
 	
