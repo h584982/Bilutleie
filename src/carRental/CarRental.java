@@ -91,8 +91,9 @@ public class CarRental {
 		return true;
 	}
 	
-	public boolean dropOffCar(String location, int reservationId) {
-		// TODO
+	public boolean dropOffCar(String location, int reservationID) {
+		Reservation reservation = this.reservationsMap.get(reservationID);
+
 		return true;
 	}
 	
@@ -130,6 +131,10 @@ public class CarRental {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public HashMap<Integer, Reservation> getReservationsMap(){
+		return this.reservationsMap;
 	}
 	
 	
