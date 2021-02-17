@@ -13,6 +13,8 @@ public class Client { //main method
 
     public static void main(String[] args) {
 
+
+
         populateCarMap();
         CarRental carRental = new CarRental("Joe's Garage", 23502350, new ArrayList<Customer>(), new ArrayList<RentalOffice>(), randomAddress());
 
@@ -28,6 +30,30 @@ public class Client { //main method
             carRental.getOffices().add(randomOffice(i + 1));
         }
 
+        for(RentalOffice officeObject : carRental.getOffices()){
+            int amountOfReservations = random.nextInt(40)+10;
+            for(int i = 0 ; i < amountOfReservations ; i++) {
+
+                Car car = null;
+                Customer customer = null;
+
+                boolean madeReservation = false;
+                do {
+                    // Get random car from carPark
+                    car = officeObject.getCarPark().get(random.nextInt(officeObject.getCarPark().size()));
+                    // get random customer
+                    customer = carRental.getCustomers().get(random.nextInt(carRental.getCustomers().size()));
+
+                   madeReservation = officeObject.createReservation(car, customer, );
+
+                } while(!madeReservation);
+
+            }
+
+
+        }
+
+
 
 
     }
@@ -38,7 +64,6 @@ public class Client { //main method
         Address address = randomAddress();
 
         int phone = random.nextInt(90000000)+10000000;
-
 
 
         ArrayList<Car> carPark = new ArrayList<>();
