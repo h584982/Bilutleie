@@ -112,6 +112,6 @@ public class Client { //main method
         Character rentalGroup = "ABCD".charAt(random.nextInt(4));
 
 
-        return new Car(registration, brand, model, color, rentalGroup, false);
+        return new Car(registration, brand, model, color, rentalGroup, random.nextInt(500000));
     }
 }
