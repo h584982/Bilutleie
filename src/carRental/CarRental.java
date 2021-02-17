@@ -82,6 +82,11 @@ public class CarRental {
 	
 	public boolean pickUpCar(String location, int reservationID) {
 
+		Reservation reservation = this.reservationsMap.get(reservationID);
+		if ((Integer)reservation.getCustomer().getCardNumber() == null){
+			return false;
+		}
+
 
 		return true;
 	}
