@@ -37,7 +37,7 @@ public class CarRental {
 		//TODO
 	}
 	
-	private ArrayList<RentalOffice> getOffices(String location){
+	private ArrayList<RentalOffice> findOffices(String location){
 		// TODO
 		return null;
 	}
