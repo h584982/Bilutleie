@@ -1,5 +1,6 @@
 package carRental;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -50,7 +51,7 @@ public class CarRental {
 		return null;
 	}
 	
-	private ArrayList<Car> searchQuery(RentalOffice office, Date time){
+	private ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime time){
 		// TODO
 		return null;
 	}
@@ -69,7 +70,7 @@ public class CarRental {
 		return true;
 	}
 	
-	private boolean makeReservation(RentalOffice office, Car car, Customer customer, Date time) {
+	private boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
 		// TODO
 		return true;
 	}
