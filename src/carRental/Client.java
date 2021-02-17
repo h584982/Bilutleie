@@ -2,10 +2,8 @@ package carRental;
 
 import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.time.Year;
+import java.util.*;
 
 public class Client { //main method
     static Random random = new Random();
@@ -36,6 +34,9 @@ public class Client { //main method
 
                 Car car = null;
                 Customer customer = null;
+                Date pickupDate = null;
+                Date deliveryDate = null;
+
 
                 boolean madeReservation = false;
                 do {
@@ -44,7 +45,54 @@ public class Client { //main method
                     // get random customer
                     customer = carRental.getCustomers().get(random.nextInt(carRental.getCustomers().size()));
 
-                   madeReservation = officeObject.createReservation(car, customer, );
+                    // get random startDate
+                    int year = random.nextInt(2) + 2021;
+                    int month = random.nextInt(11)+ 1;
+                    int date = random.nextInt(27) + 1;
+                    int hour = random.nextInt(23);
+                    int min = random.nextInt(59);
+
+                    pickupDate = new Date( year, month, date, hour, min );
+
+                    // get random endDate
+                    int returnYear = random.nextInt(1) + year;
+
+                    int returnMonth;
+                    // if-statement if deliveryDate is equal to the same year as pickupDate
+                    if (returnYear == year) {
+                        returnMonth = random.nextInt(12 - month) + month;
+                    } else {
+                        returnMonth = random.nextInt(11)+ 1;
+                    }
+
+                    int returnDate;
+                    // if-statement if deliveryDate is equal to the same year and month as pickupDate
+                    if (returnYear == year && returnMonth == month) {
+                        returnDate = random.nextInt(28 - date) + date;
+                    } else {
+                        returnDate = random.nextInt(27) + 1;
+                    }
+
+                    int returnHour;
+                    // if-statement if deliveryDate is equal to the same year, month and day as pickupDate
+                    if (returnYear == year && returnMonth == month && returnDate == date) {
+                        returnHour = random.nextInt(23 - hour) + hour;
+                    } else {
+                        returnHour = random.nextInt(23);
+                    }
+
+                    int returnMin;
+                    // if-statement if return date is equal to the same year, month, day and hour as pickupDate
+                    // and probably all stars align
+                    if (returnYear == year && returnMonth == month && returnDate == date && returnHour == hour) {
+                        returnMin = random.nextInt(59 - min) + min;
+                    } else {
+                        returnMin = random.nextInt(59);
+                    }
+
+                    deliveryDate = new Date( returnYear, returnMonth, returnDate, returnHour, returnMin );
+
+                    madeReservation = officeObject.createReservation(car, customer, pickupDate, deliveryDate );
 
                 } while(!madeReservation);
 
