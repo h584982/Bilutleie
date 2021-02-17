@@ -2,6 +2,8 @@ package carRental;
 
 import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.Year;
 import java.util.*;
 
@@ -12,7 +14,23 @@ public class Client { //main method
     public static void main(String[] args) {
 
 
+        setupCarRental();
 
+        // TODO: Meny system
+        // - search via internet , with existing costumer
+        // - rental office clerk , no customer
+
+        // pickup car event -
+        // drop off event -
+
+        // helpmethods
+        // createAddress - customer
+
+
+
+    }
+
+    private static void setupCarRental() {
         populateCarMap();
         CarRental carRental = new CarRental("Joe's Garage", 23502350, new ArrayList<Customer>(), new ArrayList<RentalOffice>(), randomAddress());
 
@@ -23,11 +41,11 @@ public class Client { //main method
            carRental.getCustomers().add(randomCustomer());
        }
 
-
+        // Populate Rental Offices
         for(int i = 0 ; i  < random.nextInt(20) + 5; i++){
             carRental.getOffices().add(randomOffice(i + 1));
         }
-
+        // Populate Reservations
         for(RentalOffice officeObject : carRental.getOffices()){
             int amountOfReservations = random.nextInt(40)+10;
             for(int i = 0 ; i < amountOfReservations ; i++) {
@@ -39,6 +57,7 @@ public class Client { //main method
 
 
                 boolean madeReservation = false;
+                int reservationID= carRental.giveNextReservationID();
                 do {
                     // Get random car from carPark
                     car = officeObject.getCarPark().get(random.nextInt(officeObject.getCarPark().size()));
@@ -92,7 +111,7 @@ public class Client { //main method
 
                     deliveryDate = new Date( returnYear, returnMonth, returnDate, returnHour, returnMin );
 
-                    madeReservation = officeObject.createReservation(car, customer, pickupDate, deliveryDate );
+                    madeReservation = officeObject.createReservation(reservationID, car, customer, pickupDate, deliveryDate );
 
                 } while(!madeReservation);
 
@@ -100,10 +119,6 @@ public class Client { //main method
 
 
         }
-
-
-
-
     }
 
 

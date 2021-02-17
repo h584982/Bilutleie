@@ -34,7 +34,7 @@ public class CarRental {
 	}
 	
 	public void createCustomer(String firstName, String lastName, Address address, int phoneNumber) {
-		// TODO
+		this.customers.add(new Customer(firstName,lastName,address,phoneNumber));
 	}
 	
 	public void createRentalOffice(Address address, int phoneNumber) {
