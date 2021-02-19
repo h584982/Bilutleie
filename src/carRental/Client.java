@@ -24,12 +24,12 @@ public class Client { //main method
                 case 1:
 
                     System.out.println("Er du registrert? false for nei, true for ja");
-                    boolean registered = input.nextBoolean(); //TODO: fix
+                    boolean registered = input.nextBoolean();
                     if (registered) {
                         boolean found = false; //test if written customerID is valid
                         while(!found) {
                             System.out.println("Skriv inn ditt kunde nummer (index nummer):");
-                            int customerIndexNumber = input.nextInt(); //TODO: get referance to customer
+                            int customerIndexNumber = input.nextInt();
                             Customer customer = carRental.getCustomers().get(customerIndexNumber);
                             System.out.println(customer.toString());
                         }
