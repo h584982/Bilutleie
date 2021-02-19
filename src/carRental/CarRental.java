@@ -61,7 +61,7 @@ public class CarRental {
      * @param location
      * @return all matching RentalOffices
      */
-    private ArrayList<RentalOffice> findOffices(String location) {
+    public ArrayList<RentalOffice> findOffices(String location) {
         ArrayList<RentalOffice> locations = new ArrayList<RentalOffice>();
         for (RentalOffice office : this.getOffices()) {
             if (office.getAddress().getCity().toLowerCase().equals(location.toLowerCase())) {
@@ -79,28 +79,13 @@ public class CarRental {
      * @param delivieryDueDate
      * @return
      */
-    private ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
+    public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
 
     	
     	ArrayList<Car> availableCars = offices.get(offices.indexOf(office)).searchCars(pickUpTime, delivieryDueDate);
     		
         return availableCars;
-    	/*
-        Set<Car> carSet = new HashSet<>(office.getCarPark());
-        for (Reservation reservation : office.getReservations()) {
 
-            // Only need to check cars still in carSet
-            if (carSet.contains(reservation.getCar())) {
-
-                // Check and remove car if queried pickup and drop off time is within the reservation time period
-                if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
-                    if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
-                        carSet.remove(reservation.getCar());
-
-                    }
-                }
-            }
-		*/
 
     }
 
@@ -112,21 +97,29 @@ public class CarRental {
     public boolean pickUpCar(String location, int reservationID) {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
-        if ((Integer) reservation.getCustomer().getCardNumber() == null) {
+        Integer customerCreditCard = reservation.getCustomer().getCardNumber();
+        if (customerCreditCard == null) {
             return false;
         }
+
+        reservation.activatePickUp(customerCreditCard);
         return true;
     }
 
-    public int dropOffCar(int dropOffOffice, int reservationID) {
+    public int dropOffCar(int dropOffOffice, int reservationID, int dropOffMilage)
+    {
         Reservation reservation = this.reservationsMap.get(reservationID);
         Optional<RentalOffice> office = getOffices().stream().filter(off -> off.getOfficeId() == dropOffOffice).findFirst();
-        int price = office.get().dropOffEvent(reservation);
+        int price = office.get().dropOffEvent(reservation, dropOffMilage);
         return price;
     }
 
-    private boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
+    public boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
         // TODO
+
+
+        office.createReservation(this.giveNextReservationID(), car, customer,pickUpDate, dropOffDate);
+
         return true;
     }
 
