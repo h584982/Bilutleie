@@ -31,6 +31,13 @@ public class Address {
 	public void setCity(String city) {
 		City = city;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Address{" +
+				"street='" + street + '\'' +
+				", zipCode=" + zipCode +
+				", City='" + City + '\'' +
+				'}';
+	}
 }
