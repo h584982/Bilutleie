@@ -4,8 +4,10 @@ import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Client { //main method
@@ -75,7 +77,7 @@ public class Client { //main method
 
                     break;
                 case 2:
-                        pickUpSession();
+                        pickUpSession(carRental);
 
                     break;
                 case 3:
@@ -145,9 +147,62 @@ public class Client { //main method
     }
 
 
-    private static void pickUpSession(){
+    private static void pickUpSession(CarRental carRental){
+        Scanner input = new Scanner(System.in);
+        while(true){
+            System.out.println("Enter ReservationID: ");
+            int reservationID = input.nextInt();
+            boolean hasCreditCard = carRental.pickUpCar(reservationID);
+            if (hasCreditCard){
+                System.out.println("Car pick up complete");
+
+                break;
+            }
+            System.out.println("No creditcard information found");
+            System.out.println("Please enter credit information, or 'c' for cancle");
+            String creditcard = input.next();
+            if (creditcard.equals("c")){
+                System.out.println("pickup failed");
+                break;
+            }
+           carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
+        }
 
 
+
+
+    }
+
+    public static void dropUpSession(CarRental carRental){
+
+        while( true){
+            Scanner input = new Scanner(System.in);
+            System.out.println("Enter reservationID");
+            int reservationID = input.nextInt();
+
+
+            System.out.println("Is car delivered to new location y/n?:");
+            Integer officeID = null;
+
+            String answer = input.next();
+            if (answer.equals("y")){
+                System.out.println("Enter location id");
+                officeID = input.nextInt();
+            }
+            else{
+                System.out.println("invalid answer! Aborting");
+                return;
+            }
+            System.out.println("Enter date");
+
+
+        }
+
+    }
+
+    public static LocalDateTime parseDateTime(String input){
+
+       return LocalDate.parse(input).atTime(14,30);
     }
 
     public static CarRental setupCarRental() {
