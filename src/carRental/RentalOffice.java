@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RentalOffice {
 	
@@ -32,9 +34,34 @@ public class RentalOffice {
 		
 	}
 	
-	public Car[] searchCars(Date time) {
-		// TODO
-		return null;
+	/**
+	 * Søker igjennom bilparkern og returnerer alle ledige biler
+	 * @param time
+	 * @return
+	 */
+	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
+		ArrayList<Car> carSet = new ArrayList<Car>(carPark);
+        for (Reservation reservation : reservations) {
+
+            // Only need to check cars still in carSet
+            if (carSet.contains(reservation.getCar())) {
+
+                // Check and remove car if queried pickup and drop off time is within the reservation time period
+                if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
+                    if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
+                        carSet.remove(reservation.getCar());
+
+                    }
+                }
+            }
+
+
+        }
+		
+		
+		ArrayList<Car> availableCars = new ArrayList<Car>();
+		
+		return availableCars;
 	}
 	
 	public Reservation createReservation(Integer reservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime deliveryDate) {
