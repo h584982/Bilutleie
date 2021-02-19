@@ -47,6 +47,19 @@ public class Reservation {
 		
 		car.setMilage(1+random.nextInt(499));
 	}
+	/**
+	 * Updates information about mileage, drop off date and drop off office 
+	 * @param droppOffDate
+	 * @param droppOffOffice
+	 */
+	public void returnCar(LocalDateTime dropOffDate, int dropOffOffice) {
+		
+		setEndMilage(car.getMilage());
+		setDropOffOffice(dropOffOffice);
+		setDropOffDate(dropOffDate);
+		
+		
+	}
 	
 	public int getReservationId() {
 		return reservationId;
