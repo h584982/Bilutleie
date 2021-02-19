@@ -14,9 +14,8 @@ public class Client { //main method
 
         CarRental carRental = setupCarRental();
         System.out.println("Car rental finished");
-        Boolean loggedIn = true;
 
-        while(loggedIn){
+        while(true){
             Scanner input = new Scanner(System.in);
             System.out.println("velg 1:\nReservasjon\n 2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
             int input_choice = input.nextInt();
@@ -26,13 +25,14 @@ public class Client { //main method
                     System.out.println("Er du registrert? false for nei, true for ja");
                     boolean registered = input.nextBoolean();
                     if (registered) {
-                        boolean found = false; //test if written customerID is validx|x||
+                        boolean found = false; //test if written customerID is valid|x|
                         while(!found) {
                             System.out.println("Skriv inn ditt kunde nummer (index nummer):");
                             int customerIndexNumber = input.nextInt();
                             Customer customer = carRental.getCustomers().get(customerIndexNumber);
                             if (!(customer == null))
                                 found = true;
+
                         }
                     } else {
                         System.out.println("Skriv inn ditt fornavn:");
@@ -53,6 +53,8 @@ public class Client { //main method
 
 
                         carRental.createCustomer(firstname, lastname, address, phoneNumber);
+                        System.out.println(carRental.getCustomers().size()-1);
+
                     }
 
 
@@ -116,7 +118,6 @@ public class Client { //main method
 
                     break;
             }
-            loggedIn = false;
             input.close();
         }
 
@@ -135,10 +136,10 @@ public class Client { //main method
         // helpmethods
         // createAddress - customer
 
-        LocalDateTime now = LocalDateTime.now().plusDays(random.nextInt(364)).plusHours(random.nextInt(24));
+/*        LocalDateTime now = LocalDateTime.now().plusDays(random.nextInt(364)).plusHours(random.nextInt(24));
         System.out.println(now.toString());
         LocalDateTime future = now.plusDays(random.nextInt(maxReservationLength)).plusHours(random.nextInt(24));
-        System.out.println(future);
+        System.out.println(future);*/
 
 
     }
