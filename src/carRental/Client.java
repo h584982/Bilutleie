@@ -22,7 +22,7 @@ public class Client { //main method
 
         while(loggedIn){
             Scanner input = new Scanner(System.in);
-            System.out.println("velg 1:\n Reservasjon\n,2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
+            System.out.println("velg 1:\n Reservasjon\n 2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
             int input_choice = input.nextInt();
             switch (input_choice){
                 case 1:
@@ -30,7 +30,7 @@ public class Client { //main method
                     System.out.println("Er du registrert? false for nei, true for ja");
 //                    boolean registered = input.nextBoolean();
 
-                    System.out.println("Hva er ditt kunde nummer");
+                    System.out.println("Hva er ditt kunde nummer:");
 //                    int customerID = input.nextInt();
 
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
@@ -39,7 +39,7 @@ public class Client { //main method
                     System.out.println("Hvor lenge skal du låne bilen?"); //days from pickUpDate to deliveryDate
                     LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
 
-                    System.out.println("Velg et kontor");
+                    System.out.println("Velg en by");
                     String location = input.next();
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
                     ArrayList<Car> availableCars = new ArrayList<>();
@@ -48,23 +48,24 @@ public class Client { //main method
 //                    for(int i = 0 ; i < offices.size() ; i++)
                     for(int index = 0 ; index < offices.size();index++ ){
                         RentalOffice officeObject = offices.get(index);
-                        ArrayList<Car> officeCars = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
+                        availableCars = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
 ;
                         System.out.println("office cars:" + officeCars.size());
                         for(int i = 0; i < officeCars.size() ;i++){
                             Car car = officeCars.get(i);
-                            System.out.println("Office: " + index + ". Car number: " +i + " Car info:" +  car.toString());
+                            System.out.println("Office: " + index + ". Car number: " + i + " Car info:" +  car.toString());
+                            //TODO: legg til pris (pricemap)
 
                         }
                     }
+                    System.out.println("Velg kontor som inneholder bilen du ønsker:");
+                    int chosenOffice = input.nextInt();
+
+                    System.out.println("Velg bil i det valgte kontoret:");
+                    int chosenCar = input.nextInt();
 
 
 
-
-                    offices.forEach( (office) -> {
-                        availableCars.addAll(carRental.searchQuery(office, pickUpDate, deliveryDate));
-                    });
-//                    offices.forEach( (n) -> { System.out.println(n.getAddress().getCity()); });
 
 
 /*
@@ -163,7 +164,7 @@ public class Client { //main method
        }
 
         // Populate Rental Offices
-        for(int i = 0 ; i  < random.nextInt(150) + 25; i++){
+        for(int i = 0 ; i  < random.nextInt(60) + 10; i++){
             carRental.getOffices().add(randomOffice(i));
         }
         // Populate Reservations
