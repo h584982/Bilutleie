@@ -47,13 +47,8 @@ public class CarRental {
         this.customers.add(new Customer(firstName, lastName, address, phoneNumber));
     }
 
-    public void createRentalOffice(Address address, int phoneNumber) {
-        // TODO
-    }
 
-    public void session() {
-        //TODO
-    }
+
 
     /**
      * <p>Searches for all RentalOffice in offices that match given location</p>
@@ -94,15 +89,16 @@ public class CarRental {
     }
 
 
-    public boolean pickUpCar(String location, int reservationID) {
+    public boolean pickUpCar(int reservationID) {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+
         Integer customerCreditCard = reservation.getCustomer().getCardNumber();
         if (customerCreditCard == null) {
             return false;
         }
-
-        reservation.activatePickUp(customerCreditCard);
+        office.pickUpEvent(reservation);
         return true;
     }
 
