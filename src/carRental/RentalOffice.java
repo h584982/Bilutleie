@@ -77,11 +77,13 @@ public class RentalOffice {
 		return reservation;
 	}
 	
-	public boolean pickUpEvent(Reservation reservation) {
+	/**
+	 * Deliver the car out and registrate the milage
+	 * @param reservation
+	 */
+	public void pickUpEvent(Reservation reservation) {
 		
-		
-		
-		return true;
+		reservation.activatePickUp();
 	}
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price

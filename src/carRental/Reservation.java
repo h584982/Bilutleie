@@ -39,17 +39,9 @@ public class Reservation {
 	 * @param creditCard
 	 * @return
 	 */
-	public boolean activatePickUp(int creditCard) {
-		if(creditCard != 0) {
+	public void activatePickUp() {
 			
-			startMilage = car.getMilage();
-			
-			customer.setCardNumber(creditCard);
-			return true;
-		} else {
-			return false;
-		}
-		
+		startMilage = car.getMilage();
 	}
 	
 	public int getReservationId() {
