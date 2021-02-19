@@ -26,13 +26,13 @@ public class Client { //main method
             int input_choice = input.nextInt();
             switch (input_choice){
                 case 1:
-/*
+
                     System.out.println("Er du registrert? false for nei, true for ja");
-                    boolean registered = input.nextBoolean();
+//                    boolean registered = input.nextBoolean();
 
                     System.out.println("Hva er ditt kunde nummer");
-                    int customerID = input.nextInt();
-*/
+//                    int customerID = input.nextInt();
+
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
                     LocalDateTime pickUpDate = LocalDateTime.now().plusDays(input.nextInt());
 
@@ -40,14 +40,13 @@ public class Client { //main method
                     LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
 
                     System.out.println("Velg et kontor");
-                    String location = input.next(); // TODO: doesn't work
+                    String location = input.next();
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
                     ArrayList<Car> availableCars = new ArrayList<>();
-                    offices.forEach( (n) -> { });
-                    offices.forEach( (n) -> { System.out.println(n.getAddress().getCity()); });
-
-
-
+                    offices.forEach( (office) -> {
+                        availableCars.addAll(carRental.searchQuery(offices.get(office), pickUpDate, deliveryDate));
+                    });
+//                    offices.forEach( (n) -> { System.out.println(n.getAddress().getCity()); });
 
 
 /*
