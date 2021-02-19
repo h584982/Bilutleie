@@ -64,6 +64,8 @@ public class Client { //main method
                     System.out.println("Velg bil i det valgte kontoret:");
                     int chosenCar = input.nextInt();
 
+                    Car car = offices.get(chosenOffice).getCarPark().get(chosenCar);
+
 
 
 
