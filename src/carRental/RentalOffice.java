@@ -78,7 +78,7 @@ public class RentalOffice {
 	}
 	
 	/**
-	 * Deliver the car out and registrate the milage
+	 * Deliver the car out and register the mileage
 	 * @param reservation
 	 */
 	public void pickUpEvent(Reservation reservation) { 
@@ -87,7 +87,7 @@ public class RentalOffice {
 	}
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
-	public int dropOffEvent(Reservation reservation, int i){
+	public int dropOffEvent(Reservation reservation){
 
 		return 0;
 	}
