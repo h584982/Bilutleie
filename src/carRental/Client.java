@@ -30,32 +30,68 @@ public class Client { //main method
                 case 1:
 
                     System.out.println("Er du registrert? false for nei, true for ja");
-//                    boolean registered = input.nextBoolean(); //TODO: fix
+                    boolean registered = input.nextBoolean(); //TODO: fix
+                    if (registered) {
+                        System.out.println("Hva er ditt kunde nummer:");
+                        int customerID = input.nextInt(); //TODO: get referance to customer
+                        Customer customer;
+                        ArrayList<Customer> customerList = carRental.getCustomers();
+                        for (int i = 0; i < customerList.size(); i++) {
 
-                    System.out.println("Hva er ditt kunde nummer:");
-                    int customerID = input.nextInt(); //TODO: get referance to customer
+                        }
+                    } else {
+                        System.out.println("Skriv inn ditt fornavn:");
+                        String firstname = input.next();
+                        System.out.println("Skriv inn ditt etternavn:");
+                        String lastname = input.next();
+
+                        System.out.println("Skriv inn din gate:");
+                        String street = input.next();
+                        System.out.println("Skriv inn ditt gatenummer");
+                        int zipcode = input.nextInt();
+                        System.out.println("Skriv inn din by");
+                        String city = input.next();
+                        Address address = new Address(street, zipcode, city);
+
+                        System.out.println("Skriv inn ditt telefonnummer:");
+                        int phoneNumber = input.nextInt();
+
+
+                        carRental.createCustomer(firstname, lastname, address, phoneNumber);
+                    }
+
+
+
+
 
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
                     LocalDateTime pickUpDate = LocalDateTime.now().plusDays(input.nextInt());
 
+
                     System.out.println("Hvor lenge skal du låne bilen?"); //days from pickUpDate to deliveryDate
                     LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
 
-                    System.out.println("Velg en by");
+
+                    System.out.println("Velg en by"); //search for all offices in city
                     String location = input.next();
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
-                    ArrayList<Car> availableCars = new ArrayList<>();
+
+                    ArrayList<Car> availableCarsForOffice = new ArrayList<>();
                     System.out.println(offices.size());
                     offices.forEach(office -> System.out.println( office.getAddress().getCity()));
 //                    for(int i = 0 ; i < offices.size() ; i++)
                     for(int index = 0 ; index < offices.size();index++ ){
                         RentalOffice officeObject = offices.get(index);
-                        availableCars = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
-;
-                        System.out.println("office cars:" + availableCars.size());
-                        for(int i = 0; i < availableCars.size() ;i++){
-                            Car car = availableCars.get(i);
-                            System.out.println("Office: " + index + ". Car number: " + i + " Car info:" +  car.toString() + " Pris: ");
+                        availableCarsForOffice = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
+
+                        System.out.println("office cars:" + availableCarsForOffice.size());
+                        for(int i = 0; i < availableCarsForOffice.size() ;i++){
+                            Car car = availableCarsForOffice.get(i);
+                            System.out.println(
+                                    "Office: " + index + ". Car number: " + i
+                                    + " Car info:" +  car.toString()
+                                    + " Pris: " + officeObject.getPriceMap()
+                            );
                             //TODO: legg til pris (pricemap)
 
 
@@ -70,9 +106,7 @@ public class Client { //main method
                     Car car = offices.get(chosenOffice).getCarPark().get(chosenCar);
 
 
-
-
-//                   carRental.makeReservation( carRental, car, customerID, pickUpDate, deliveryDate );
+//                   carRental.makeReservation( carRental, car, customer, pickUpDate, deliveryDate );
 
 
                     break;
