@@ -61,7 +61,7 @@ class Testing {
 
 		    assertTrue(rentalOffice.getReservations().contains(reservation));
 		    assertTrue(tesla.getReservations().contains(reservation));
-		    assertTrue(customer.getReservations() != null);
+		    assertTrue(rentalOffice.getReservations() != null);
 
 	}
 	
@@ -75,7 +75,7 @@ class Testing {
 
 		    assertFalse(rentalOffice.getReservations().contains(reservation));
 		    assertFalse(tesla.getReservations().contains(reservation));
-		    assertTrue(customer.getReservations() == null);
+		    assertTrue(rentalOffice.getReservations() == null);
 		    
 		
 		
