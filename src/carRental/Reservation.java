@@ -19,20 +19,15 @@ public class Reservation {
 	
 	
 	
-	public Reservation(int reservationId, Customer customer, int pickUpOffice, int dropOffOffice, LocalDateTime pickUpDate,
-					   LocalDateTime deliveryDueDate, Car car, int startMilage, int endMilage, LocalDateTime dropOffDate, boolean isPaid) {
+	public Reservation(int reservationId, Customer customer, int pickUpOffice,  LocalDateTime pickUpDate,
+					   LocalDateTime deliveryDueDate, Car car) {
 		super();
 		this.reservationId = reservationId;
 		this.customer = customer;
 		this.pickUpOffice = pickUpOffice;
-		this.dropOffOffice = dropOffOffice;
 		this.pickUpDate = pickUpDate;
 		this.deliveryDueDate = deliveryDueDate;
 		this.car = car;
-		this.startMilage = startMilage;
-		this.endMilage = endMilage;
-		this.dropOffDate = dropOffDate;
-		this.isPaid = isPaid;
 	}
 	
 	public Reservation() {

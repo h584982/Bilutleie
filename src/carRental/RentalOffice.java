@@ -35,9 +35,10 @@ public class RentalOffice {
 	}
 	
 	/**
-	 * Søker igjennom bilparkern og returnerer alle ledige biler
-	 * @param time
-	 * @return
+	 * Search through an office car park and remove cars from the list that is reserved for the given time
+	 * @param pickUpTime
+	 * @param delivieryDueDate
+	 * @return a list of available cars
 	 */
 	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
 		ArrayList<Car> carSet = new ArrayList<Car>(carPark);
@@ -50,12 +51,9 @@ public class RentalOffice {
                 if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
                     if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
                         carSet.remove(reservation.getCar());
-
                     }
                 }
             }
-
-
         }
 		
 		
@@ -64,11 +62,21 @@ public class RentalOffice {
 		return availableCars;
 	}
 	
-	public Reservation createReservation(Integer reservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime deliveryDate) {
-		// TODO
-		Reservation reservation = null;
+	/**
+	 * Create a reservation and add it to reservations-array
+	 * @param nextReservationID
+	 * @param car
+	 * @param customer
+	 * @param pickupDate
+	 * @param dropOfDate
+	 * @return the newly created reservation
+	 */
+	public Reservation createReservation(int nextReservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime dropOfDate) {
+		Reservation reservation = new Reservation(nextReservationID, customer, officeId, pickupDate, dropOfDate, car);
+		reservations.add(reservation);
 		return reservation;
 	}
+	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
 	public int dropOffEvent(Reservation reservation){
 
