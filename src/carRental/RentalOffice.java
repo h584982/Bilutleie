@@ -56,10 +56,7 @@ public class RentalOffice {
             }
         }
 		
-		
-		ArrayList<Car> availableCars = new ArrayList<Car>();
-		
-		return availableCars;
+		return carSet;
 	}
 	
 	/**
@@ -88,7 +85,13 @@ public class RentalOffice {
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
 	public int dropOffEvent(Reservation reservation){
-
+		// Oppdatere endMilage,dropOffDate
+		// Sjekke om bilen er blitt returnert til samme sted
+		// Oppdatere returdato og deretter beregne pris
+		// Flytte reservasjonen til arkiv
+		
+		
+		
 		return 0;
 	}
 	public int calculatePrice() {
