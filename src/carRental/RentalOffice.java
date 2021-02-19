@@ -115,6 +115,7 @@ public class RentalOffice {
 		
 		// Calculates days rounded up
 		int deltaDays = (int) Math.ceil(deltaTime/24);
+
 		
 		int priceEachDay = priceMap.get(reservation.getCar().getCarClassification());
 		
