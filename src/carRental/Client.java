@@ -134,7 +134,7 @@ public class Client { //main method
 
     }
 
-    private static CarRental setupCarRental() {
+    public static CarRental setupCarRental() {
         populateCarMap();
         CarRental carRental = new CarRental("Joe's Garage", 23502350, new ArrayList<Customer>(), new ArrayList<RentalOffice>(), randomAddress());
 
@@ -233,7 +233,7 @@ public class Client { //main method
     }
 
 
-    private static RentalOffice randomOffice(int officeID){
+    public static RentalOffice randomOffice(int officeID){
 
         Address address = randomAddress();
 
@@ -268,7 +268,7 @@ public class Client { //main method
     private static List<String> cities = new ArrayList<String>((
             List.of("Bergen", "Arna", "Sotra", "Førde", "Ålesund", "Stord", "Oslo", "Stavanger", "Sundal", "Jondal", "MO I RANA", "HARSTAD", "KONGSVINGER", "MOSS", "RISØR", "ARENDAL", "TRONDHEIM", "BODØ", "TROMS", "KAUTOKEINO")));
 
-    private static Address randomAddress(){
+    public static Address randomAddress(){
         String street = streets.get(random.nextInt(streets.size())) + (random.nextInt(150)+1);
         Integer zipCode = random.nextInt(10000);
         String city = cities.get(random.nextInt(cities.size()));
@@ -314,7 +314,8 @@ public class Client { //main method
 
     private static HashMap<String, ArrayList<String>> cars = new HashMap<String, ArrayList<String>>();
     private  static List<String> carKeyMap = null;
-    private static void populateCarMap(){
+
+    public static void populateCarMap(){
       ArrayList<String> fords = new ArrayList<String>((
                 List.of("Ranger", "Transit", "Everest", "Ranger Raptor", "Mustang", "Focus ST", "Fiesta ST", "EcoSport", "GT")));
 
