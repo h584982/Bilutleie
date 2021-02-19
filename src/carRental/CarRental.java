@@ -81,7 +81,11 @@ public class CarRental {
      */
     private ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
 
-
+    	
+    	ArrayList<Car> availableCars = offices.get(offices.indexOf(office)).searchCars(pickUpTime, delivieryDueDate);
+    		
+        return availableCars;
+    	/*
         Set<Car> carSet = new HashSet<>(office.getCarPark());
         for (Reservation reservation : office.getReservations()) {
 
@@ -96,11 +100,7 @@ public class CarRental {
                     }
                 }
             }
-
-
-        }
-
-        return new ArrayList<>(carSet);
+		*/
 
     }
 

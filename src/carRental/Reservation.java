@@ -39,9 +39,22 @@ public class Reservation {
 		
 	}
 	
+	/**
+	 * Setter riktige verdi til startMilage og passer på at en kunde har kredittkort registrert
+	 * @param creditCard
+	 * @return
+	 */
 	public boolean activatePickUp(int creditCard) {
-		//TODO
-		return true;
+		if(creditCard != 0) {
+			
+			startMilage = car.getMilage();
+			
+			customer.setCardNumber(creditCard);
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	public int getReservationId() {
