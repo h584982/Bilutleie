@@ -84,10 +84,18 @@ public class RentalOffice {
 	}
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
-	public int dropOffEvent(Reservation reservation){
-		// Oppdatere endMilage,dropOffDate
+	public int dropOffEvent(Reservation reservation, LocalDateTime dropOffDate){
+		
+		//Checks if the car is returned to the same office, if not 1 day is added for transportation
+		if(officeId != reservation.getPickUpOffice()) {
+			dropOffDate = dropOffDate.plusDays(1);
+		}
+		
+		
+		reservation.returnCar(dropOffDate, officeId);
+		
 		// Sjekke om bilen er blitt returnert til samme sted
-		// Oppdatere returdato og deretter beregne pris
+		// og deretter beregne pris
 		// Flytte reservasjonen til arkiv
 		
 		
