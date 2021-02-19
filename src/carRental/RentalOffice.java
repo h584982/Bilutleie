@@ -71,14 +71,14 @@ public class RentalOffice {
 	 * @param dropOfDate
 	 * @return the newly created reservation
 	 */
-	public Reservation createReservation(int nextReservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime dropOfDate) {
+	public boolean createReservation(int nextReservationID, Car car, Customer customer, LocalDateTime pickupDate, LocalDateTime dropOfDate) {
 		Reservation reservation = new Reservation(nextReservationID, customer, officeId, pickupDate, dropOfDate, car);
 		reservations.add(reservation);
-		return reservation;
+		return true;
 	}
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
-	public int dropOffEvent(Reservation reservation){
+	public int dropOffEvent(Reservation reservation, int i){
 
 		return 0;
 	}
