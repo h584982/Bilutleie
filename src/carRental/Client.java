@@ -15,8 +15,27 @@ public class Client { //main method
     public static void main(String[] args) {
 
 
-        setupCarRental();
+        CarRental carRental = setupCarRental();
 
+        while(true){
+            Scanner input = new Scanner(System.in);
+            System.out.println("velg 1,2 3,4 ,5");
+            int input_choice = input.nextInt();
+            switch (input_choice){
+                case 1:{
+                    System.out.println("hva er ditt kunde nummer");
+                    int kunde_nummer = input.nextInt();
+
+                    System.out.println("hva er location");
+                    String location = input.nextLine();
+                    carRental.session();
+                    break;
+                }
+
+            }
+
+
+        }
 
 
         // TODO: Menu system
@@ -85,7 +104,7 @@ public class Client { //main method
 
     }
 
-    private static void setupCarRental() {
+    private static CarRental setupCarRental() {
         populateCarMap();
         CarRental carRental = new CarRental("Joe's Garage", 23502350, new ArrayList<Customer>(), new ArrayList<RentalOffice>(), randomAddress());
 
@@ -180,6 +199,7 @@ public class Client { //main method
 
 
         }
+        return carRental;
     }
 
 
