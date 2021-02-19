@@ -1,6 +1,8 @@
 package carRental;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,10 +18,10 @@ public class RentalOffice {
 	private ArrayList<Car> carPark;
 	private ArrayList<Reservation> reservations;
 	private ArrayList<Reservation> reservationArchive;
-	private HashMap priceMap;
+	private HashMap<Character, Integer> priceMap;
 	
 	public RentalOffice(int officeId, Address address, int phoneNumber, ArrayList<Car> carPark,
-			ArrayList<Reservation> reservations, ArrayList<Reservation> reservationArchive, HashMap priceMap) {
+			ArrayList<Reservation> reservations, ArrayList<Reservation> reservationArchive, HashMap<Character, Integer> priceMap) {
 		super();
 		this.officeId = officeId;
 		this.address = address;
@@ -108,9 +110,16 @@ public class RentalOffice {
 	 * @return
 	 */
 	private int calculatePrice(Reservation reservation) {
+		// Calculates the difference in time from pick up to delivery in hours
+		Long deltaTime = reservation.getPickUpDate().until(reservation.getDropOffDate(), ChronoUnit.HOURS);
+		
+		// Calculates days rounded up
+		int deltaDays = (int) Math.ceil(deltaTime/24);
 
 		
-		return 0;
+		int priceEachDay = priceMap.get(reservation.getCar().getCarClassification());
+		
+		return deltaDays * priceEachDay;
 	}
 	
 	public int getOfficeId() {
