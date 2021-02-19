@@ -97,12 +97,13 @@ public class CarRental {
     public boolean pickUpCar(String location, int reservationID) {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
+        RentalOffice office = offices.get(offices.indexOf(reservation.getPickUpOffice()));
+
         Integer customerCreditCard = reservation.getCustomer().getCardNumber();
         if (customerCreditCard == null) {
             return false;
         }
-
-        reservation.activatePickUp(customerCreditCard);
+        office.pickUpEvent(reservation);
         return true;
     }
 
