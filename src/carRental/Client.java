@@ -26,12 +26,12 @@ public class Client { //main method
                     System.out.println("Er du registrert? false for nei, true for ja");
                     boolean registered = input.nextBoolean(); //TODO: fix
                     if (registered) {
-                        System.out.println("Hva er ditt kunde nummer:");
-                        int customerID = input.nextInt(); //TODO: get referance to customer
-                        Customer customer;
-                        ArrayList<Customer> customerList = carRental.getCustomers();
-                        for (int i = 0; i < customerList.size(); i++) {
-
+                        boolean found = false; //test if written customerID is valid
+                        while(!found) {
+                            System.out.println("Skriv inn ditt kunde nummer (index nummer):");
+                            int customerIndexNumber = input.nextInt(); //TODO: get referance to customer
+                            Customer customer = carRental.getCustomers().get(customerIndexNumber);
+                            System.out.println(customer.toString());
                         }
                     } else {
                         System.out.println("Skriv inn ditt fornavn:");
@@ -102,6 +102,8 @@ public class Client { //main method
 
 //                   carRental.makeReservation( carRental, car, customer, pickUpDate, deliveryDate );
 
+                    //dersom null blei ikkje reservasjonen gjort, ellers returnerer reservasjonsID
+
 
                     break;
                 case 2:
@@ -121,43 +123,9 @@ public class Client { //main method
 
         // TODO: Menu system
 
-            // make empty info
-            Car car = null;
-
-            Customer user = new Customer();
-            Address address = randomAddress();
-
-            LocalDateTime pickUpDate = LocalDateTime.now();
-            int rentalDuration = 14; //days
-
-            RentalOffice office;
-
-            // - search via internet , with existing costumer
-
-
-            Reservation reservation = null;
-
+        // - search via internet , with existing costumer
 
         // - rental office clerk , no customer
-
- //       while (true) { // TODO: fix while-loop
-
-
-//            pickUpDate.plusDays(14);
-//
-//
-//            rentalDuration = 14; //days
-//
-//            //Register
-//            user.setFirstName("John");
-//            user.setLastName("Smith");
-//            user.setAddress(address);
-//            user.setPhoneNumber(42069420);
-//            user.setCardNumber(1234567890);
-
-//            carRental.makeReservation(office, car, user, pickUpDate, pickUpDate.plusDays(rentalDuration));
-
-//        }
 
         // pickup car event - prompt user for location and reservation id
 
