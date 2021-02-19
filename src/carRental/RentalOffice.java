@@ -108,7 +108,7 @@ public class RentalOffice {
 	 * @return
 	 */
 	private int calculatePrice(Reservation reservation) {
-		
+
 		
 		return 0;
 	}
