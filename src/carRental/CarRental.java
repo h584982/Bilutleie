@@ -118,8 +118,8 @@ public class CarRental {
         // TODO
 
 
-        office.createReservation(this.giveNextReservationID(), car, customer,pickUpDate, dropOffDate);
-
+        Reservation reservation = office.createReservation(this.giveNextReservationID(), car, customer,pickUpDate, dropOffDate);
+        this.reservationsMap.put(reservation.getReservationId(), reservation);
         return true;
     }
 
