@@ -42,7 +42,11 @@ public class RentalOffice {
 		Reservation reservation = null;
 		return reservation;
 	}
-	
+	// Processs reservation, update reservations and reservationArchive, calculate and return price
+	public int dropOffEvent(Reservation reservation){
+
+		return 0;
+	}
 	public int calculatePrice() {
 		// TODO
 		return 0;
