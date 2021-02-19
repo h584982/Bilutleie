@@ -2,6 +2,7 @@ package carRental;
 
 import javax.lang.model.type.IntersectionType;
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -16,78 +17,97 @@ public class Client { //main method
 
 
         CarRental carRental = setupCarRental();
+        System.out.println("Car rental finished");
+        Boolean loggedIn = true;
 
-        while(true){
+        while(loggedIn){
             Scanner input = new Scanner(System.in);
-            System.out.println("velg 1:\n Search and reservation\n,2: \npickup car\n 3:\ndrop off car \n");
+            System.out.println("velg 1:\n Reservasjon\n,2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
             int input_choice = input.nextInt();
             switch (input_choice){
-                case 1:{
-                    System.out.println("hva er ditt kunde nummer");
-                    int kunde_nummer = input.nextInt();
+                case 1:
+/*
+                    System.out.println("Er du registrert? false for nei, true for ja");
+                    boolean registered = input.nextBoolean();
+ */
+                    System.out.println("Hva er ditt kunde nummer");
+                    int customerID = input.nextInt();
 
-                    System.out.println("hva er location");
+                    System.out.println("Hva er location");
                     String location = input.nextLine();
                     carRental.session();
+                    carRental.findOffices(location);
+/*
+                    System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
+                    LocalDateTime pickUpDate = new LocalDateTime().now().plusDays(input.nextInt());
+                    pickUpDate = pickUpDate.now()
+
+                    System.out.println("Hvor lenge skal du låne bilen?"); //days from pickUpDate to deliveryDate
+                    LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
+
+
+                    ArrayList<Car> availableCars = carRental.searchQuery(carRental, pickUpDate, deliveryDate);
+                    System.out.println("Velg en ledig bil");
+                    input.nextInt();
+
+
+                   carRental.makeReservation( carRental, car, customerID, pickUpDate, deliveryDate );
+*/
                     break;
-                }
+                case 2:
 
+
+                    break;
+                case 3:
+
+
+                    break;
             }
-
+            loggedIn = false;
 
         }
+
 
 
         // TODO: Menu system
 
-        // make empty info
-        Car car = null;
+            // make empty info
+            Car car = null;
 
-        Customer user = new Customer();
-        Address address = randomAddress();
+            Customer user = new Customer();
+            Address address = randomAddress();
 
-        LocalDateTime pickUpDate = LocalDateTime.now();
-        int rentalDuration = 14; //days
+            LocalDateTime pickUpDate = LocalDateTime.now();
+            int rentalDuration = 14; //days
 
-        RentalOffice office;
-        CarRental carRental;
+            RentalOffice office;
 
-        // - search via internet , with existing costumer
-
-
-        Reservation reservation = null;
-
-        while (true) { // TODO: fix while-loop
-            System.out.println("Velkommen " + user + "til bilutleie. Velg et utleiested");
-
-            ArrayList<RentalOffice> offices = new ArrayList<>();
-            offices.forEach( (n) -> { System.out.println(offices); });
+            // - search via internet , with existing costumer
 
 
-        }
+            Reservation reservation = null;
 
 
         // - rental office clerk , no customer
-        System.out.println("Velkommen til bilutleie. Velg hvilket bilmerke du vil leie");
 
-        while (true) { // TODO: fix while-loop
-
-
-            pickUpDate.plusDays(14);
+ //       while (true) { // TODO: fix while-loop
 
 
-            rentalDuration = 14; //days
+//            pickUpDate.plusDays(14);
+//
+//
+//            rentalDuration = 14; //days
+//
+//            //Register
+//            user.setFirstName("John");
+//            user.setLastName("Smith");
+//            user.setAddress(address);
+//            user.setPhoneNumber(42069420);
+//            user.setCardNumber(1234567890);
 
-            //Register
-            user.setFirstName("John");
-            user.setLastName("Smith");
-            user.setAddress(address);
-            user.setPhoneNumber(42069420);
-            user.setCardNumber(1234567890);
+//            carRental.makeReservation(office, car, user, pickUpDate, pickUpDate.plusDays(rentalDuration));
 
-            carRental.makeReservation(office, car, user, pickUpDate, pickUpDate.plusDays(rentalDuration));
-
-        }
+//        }
 
         // pickup car event - prompt user for location and reservation id
 
@@ -117,7 +137,7 @@ public class Client { //main method
 
         // Populate Rental Offices
         for(int i = 0 ; i  < random.nextInt(20) + 5; i++){
-            carRental.getOffices().add(randomOffice(i + 1));
+            carRental.getOffices().add(randomOffice(i));
         }
         // Populate Reservations
         for(RentalOffice officeObject : carRental.getOffices()){
