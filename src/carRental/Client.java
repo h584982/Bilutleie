@@ -17,11 +17,61 @@ public class Client { //main method
 
         setupCarRental();
 
+
+
         // TODO: Menu system
+
+        // make empty info
+        Car car = null;
+
+        Customer user = new Customer();
+        Address address = randomAddress();
+
+        LocalDateTime pickUpDate = LocalDateTime.now();
+        int rentalDuration = 14; //days
+
+        RentalOffice office;
+        CarRental carRental;
+
         // - search via internet , with existing costumer
+
+
+        Reservation reservation = null;
+
+        while (true) { // TODO: fix while-loop
+            System.out.println("Velkommen " + user + "til bilutleie. Velg et utleiested");
+
+            ArrayList<RentalOffice> offices = new ArrayList<>();
+            offices.forEach( (n) -> { System.out.println(offices); });
+
+
+        }
+
+
         // - rental office clerk , no customer
+        System.out.println("Velkommen til bilutleie. Velg hvilket bilmerke du vil leie");
+
+        while (true) { // TODO: fix while-loop
+
+
+            pickUpDate.plusDays(14);
+
+
+            rentalDuration = 14; //days
+
+            //Register
+            user.setFirstName("John");
+            user.setLastName("Smith");
+            user.setAddress(address);
+            user.setPhoneNumber(42069420);
+            user.setCardNumber(1234567890);
+
+            carRental.makeReservation(office, car, user, pickUpDate, pickUpDate.plusDays(rentalDuration));
+
+        }
 
         // pickup car event - prompt user for location and reservation id
+
         // drop off event -
 
         // helpmethods
@@ -63,7 +113,7 @@ public class Client { //main method
 
                 Reservation reservation = null;
 
-                int reservationID= carRental.giveNextReservationID();
+                int reservationID = carRental.giveNextReservationID();
                 do {
                     // Get random car from carPark
                     car = officeObject.getCarPark().get(random.nextInt(officeObject.getCarPark().size()));
@@ -74,11 +124,11 @@ public class Client { //main method
                     pickupDate = LocalDateTime.now().plusDays(random.nextInt(364) + 1);
 
 /*
-                      int year = random.nextInt(2) + 2021;
-                      int month = random.nextInt(11)+ 1;
-                      int date = random.nextInt(27) + 1;
-                      int hour = random.nextInt(23);
-                      int min = random.nextInt(59);
+                    int year = random.nextInt(2) + 2021;
+                    int month = random.nextInt(11)+ 1;
+                    int date = random.nextInt(27) + 1;
+                    int hour = random.nextInt(23);
+                    int min = random.nextInt(59);
 */
 
 
