@@ -370,13 +370,11 @@ public class Client { //main method
         ArrayList<Reservation> reservations = new ArrayList<Reservation>();
         ArrayList<Reservation> reservationArchive = new ArrayList<Reservation>();
 
-        HashMap priceMap = new HashMap<Character,Integer>();
+        HashMap<Character, Integer> priceMap = new HashMap<Character,Integer>();
         priceMap.put('A',  random.nextInt(1000)+500);
         priceMap.put('B', random.nextInt(1000)+1000);
         priceMap.put('C', random.nextInt(1000)+1500);
         priceMap.put('D', random.nextInt(1000)+2000);
-
-        System.out.println(address.getCity());
 
         return new RentalOffice(officeID, address, phone, carPark, reservations, reservationArchive, priceMap);
     }
