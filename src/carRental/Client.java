@@ -1,13 +1,7 @@
 package carRental;
 
-import javax.lang.model.type.IntersectionType;
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Year;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Client { //main method
@@ -115,7 +109,7 @@ public class Client { //main method
 
                     break;
                 case 3:
-
+                        dropOffSession(carRental);
 
                     break;
             }
@@ -207,27 +201,48 @@ public class Client { //main method
 
     }
 
-    public static void dropUpSession(CarRental carRental){
+    public static void dropOffSession(CarRental carRental){
 
         while( true){
             Scanner input = new Scanner(System.in);
             System.out.println("Enter reservationID");
-            int reservationID = input.nextInt();
 
+            int reservationID = input.nextInt();
+            Integer officeID = null;
+            LocalDateTime date = null;
 
             System.out.println("Is car delivered to new location y/n?:");
-            Integer officeID = null;
 
             String answer = input.next();
             if (answer.equals("y")){
                 System.out.println("Enter location id");
                 officeID = input.nextInt();
             }
-            else{
+            else if (!answer.equals("n")){
                 System.out.println("invalid answer! Aborting");
                 return;
             }
+
+
             System.out.println("Enter date");
+            date = parseDateTime(input.next());
+            Integer price = null;
+            if (date==null && officeID==null){
+                // same office same date
+                price = carRental.dropOffCar(reservationID);
+
+            }else  if(date==null){
+                // new office same date
+                price = carRental.dropOffCar(officeID, reservationID);
+
+            } else if (officeID==null){
+                // same office new date
+                price = carRental.dropOffCar(reservationID, date);
+            }   else{
+                // new everything
+                price = carRental.dropOffCar(officeID, reservationID, date);
+            }
+            System.out.println("Car drop off success. Amount due:"+ price);
 
 
         }
