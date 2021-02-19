@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Client { //main method
     static Random random = new Random();
-    final static int maxReservationLength = 1;
+    final static int maxReservationLength = 10;
 
 
     public static void main(String[] args) {
@@ -43,6 +43,24 @@ public class Client { //main method
                     String location = input.next();
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
                     ArrayList<Car> availableCars = new ArrayList<>();
+                    System.out.println(offices.size());
+                    offices.forEach(office -> System.out.println( office.getAddress().getCity()));
+//                    for(int i = 0 ; i < offices.size() ; i++)
+                    for(int index = 0 ; index < offices.size();index++ ){
+                        RentalOffice officeObject = offices.get(index);
+                        ArrayList<Car> officeCars = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
+;
+                        System.out.println("office cars:" + officeCars.size());
+                        for(int i = 0; i < officeCars.size() ;i++){
+                            Car car = officeCars.get(i);
+                            System.out.println("Office: " + index + ". Car number: " +i + " Car info:" +  car.toString());
+
+                        }
+                    }
+
+
+
+
                     offices.forEach( (office) -> {
                         availableCars.addAll(carRental.searchQuery(office, pickUpDate, deliveryDate));
                     });
@@ -145,7 +163,7 @@ public class Client { //main method
        }
 
         // Populate Rental Offices
-        for(int i = 0 ; i  < random.nextInt(20) + 5; i++){
+        for(int i = 0 ; i  < random.nextInt(150) + 25; i++){
             carRental.getOffices().add(randomOffice(i));
         }
         // Populate Reservations
@@ -255,7 +273,7 @@ public class Client { //main method
         priceMap.put('C', random.nextInt(1000)+1500);
         priceMap.put('D', random.nextInt(1000)+2000);
 
-
+        System.out.println(address.getCity());
 
         return new RentalOffice(officeID, address, phone, carPark, reservations, reservationArchive, priceMap);
     }

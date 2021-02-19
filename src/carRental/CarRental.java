@@ -77,7 +77,7 @@ public class CarRental {
     public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
 
     	
-    	ArrayList<Car> availableCars = offices.get(offices.indexOf(office)).searchCars(pickUpTime, delivieryDueDate);
+    	ArrayList<Car> availableCars = office.searchCars(pickUpTime, delivieryDueDate);
     		
         return availableCars;
 
@@ -107,8 +107,8 @@ public class CarRental {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
         RentalOffice office = offices.get(dropOffOffice);
-        return office.dropOffEvent(reservation);
-
+        int price = office.dropOffEvent(reservation);
+        return price;
     }
 
     public boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
