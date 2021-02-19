@@ -19,7 +19,7 @@ public class Client { //main method
 
         while(true){
             Scanner input = new Scanner(System.in);
-            System.out.println("velg 1,2 3,4 ,5");
+            System.out.println("velg 1:\n Search and reservation\n,2: \npickup car\n 3:\ndrop off car \n");
             int input_choice = input.nextInt();
             switch (input_choice){
                 case 1:{
