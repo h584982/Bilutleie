@@ -84,26 +84,32 @@ public class RentalOffice {
 	}
 	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
-	public int dropOffEvent(Reservation reservation, LocalDateTime dropOffDate){
+	public int dropOffEvent(Reservation reservation, LocalDateTime dropOffDate, int dropOffOfficeId){
 		
 		//Checks if the car is returned to the same office, if not 1 day is added for transportation
-		if(officeId != reservation.getPickUpOffice()) {
+		if(officeId != dropOffOfficeId) {
 			dropOffDate = dropOffDate.plusDays(1);
 		}
 		
+		// Update values in reservation after returning of a car
+		reservation.returnCar(dropOffDate, dropOffOfficeId);
 		
-		reservation.returnCar(dropOffDate, officeId);
+		// Move the reservation from active reservations to archive
+		reservations.remove(reservation);
+		reservationArchive.add(reservation);
 		
-		// Sjekke om bilen er blitt returnert til samme sted
-		// og deretter beregne pris
-		// Flytte reservasjonen til arkiv
-		
-		
-		
-		return 0;
+		// Calculate the price and returns it
+		return calculatePrice(reservation);
 	}
-	public int calculatePrice() {
-		// TODO
+	
+	/**
+	 * Calculates the price based on days rented for a given reservation
+	 * @param reservation
+	 * @return
+	 */
+	private int calculatePrice(Reservation reservation) {
+		
+		
 		return 0;
 	}
 	
