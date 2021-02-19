@@ -29,30 +29,35 @@ public class Client { //main method
 /*
                     System.out.println("Er du registrert? false for nei, true for ja");
                     boolean registered = input.nextBoolean();
- */
+
                     System.out.println("Hva er ditt kunde nummer");
                     int customerID = input.nextInt();
+*/
+                    System.out.println("Velg et kontor");
+                    String location = input.nextLine(); // TODO: doesn't work
+                    ArrayList<RentalOffice> offices = carRental.findOffices(location);
+                    offices.forEach( (n) -> { System.out.println(n.toString()); });
 
-                    System.out.println("Hva er location");
-                    String location = input.nextLine();
-                    carRental.session();
-                    carRental.findOffices(location);
-/*
+
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
-                    LocalDateTime pickUpDate = new LocalDateTime().now().plusDays(input.nextInt());
-                    pickUpDate = pickUpDate.now()
+                    LocalDateTime pickUpDate = LocalDateTime.now().plusDays(input.nextInt());
 
                     System.out.println("Hvor lenge skal du låne bilen?"); //days from pickUpDate to deliveryDate
                     LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
 
+/*
 
                     ArrayList<Car> availableCars = carRental.searchQuery(carRental, pickUpDate, deliveryDate);
                     System.out.println("Velg en ledig bil");
+                    for(int i = 0; i < availableCars.length; i++) {
+                        System.out.println(availableCars);
+                    }
                     input.nextInt();
 
 
                    carRental.makeReservation( carRental, car, customerID, pickUpDate, deliveryDate );
 */
+
                     break;
                 case 2:
 
@@ -64,7 +69,7 @@ public class Client { //main method
                     break;
             }
             loggedIn = false;
-
+            input.close();
         }
 
 

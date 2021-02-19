@@ -1,6 +1,7 @@
 package carRental;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Reservation {
 
@@ -35,13 +36,17 @@ public class Reservation {
 	}
 	
 	/**
-	 * Setter riktige verdi til startMilage og passer på at en kunde har kredittkort registrert
+	 * Set correct milage and update the cars milage by an random amount up to 500 
 	 * @param creditCard
 	 * @return
 	 */
 	public void activatePickUp() {
 			 
 		startMilage = car.getMilage();
+		
+		Random random = new Random();
+		
+		car.setMilage(1+random.nextInt(499));
 	}
 	
 	public int getReservationId() {
