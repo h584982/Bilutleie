@@ -94,8 +94,8 @@ public class CarRental {
         Reservation reservation = this.reservationsMap.get(reservationID);
         RentalOffice office = offices.get(reservation.getPickUpOffice());
 
-        Long customerCreditCard = reservation.getCustomer().getCardNumber();
-        if (customerCreditCard.equals(null)) {
+
+        if (reservation.getCustomer().getCardNumber() == null) {
             return false;
         }
         office.pickUpEvent(reservation);
