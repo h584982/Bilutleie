@@ -22,16 +22,16 @@ public class Client { //main method
 
         while(loggedIn){
             Scanner input = new Scanner(System.in);
-            System.out.println("velg 1:\n Reservasjon\n 2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
+            System.out.println("velg 1:\nReservasjon\n 2: \nPlukk opp bil\n 3:\nLever inn og betal \n");
             int input_choice = input.nextInt();
             switch (input_choice){
                 case 1:
 
                     System.out.println("Er du registrert? false for nei, true for ja");
-//                    boolean registered = input.nextBoolean();
+//                    boolean registered = input.nextBoolean(); //TODO: fix
 
                     System.out.println("Hva er ditt kunde nummer:");
-//                    int customerID = input.nextInt();
+                    int customerID = input.nextInt(); //TODO: get referance to customer
 
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
                     LocalDateTime pickUpDate = LocalDateTime.now().plusDays(input.nextInt());
@@ -53,8 +53,9 @@ public class Client { //main method
                         System.out.println("office cars:" + availableCars.size());
                         for(int i = 0; i < availableCars.size() ;i++){
                             Car car = availableCars.get(i);
-                            System.out.println("Office: " + index + ". Car number: " + i + " Car info:" +  car.toString());
+                            System.out.println("Office: " + index + ". Car number: " + i + " Car info:" +  car.toString() + " Pris: ");
                             //TODO: legg til pris (pricemap)
+
 
                         }
                     }
@@ -69,19 +70,8 @@ public class Client { //main method
 
 
 
+//                   carRental.makeReservation( carRental, car, customerID, pickUpDate, deliveryDate );
 
-/*
-
-                    ArrayList<Car> availableCars = carRental.searchQuery(carRental, pickUpDate, deliveryDate);
-                    System.out.println("Velg en ledig bil");
-                    for(int i = 0; i < availableCars.length; i++) {
-                        System.out.println(availableCars);
-                    }
-                    input.nextInt();
-
-
-                   carRental.makeReservation( carRental, car, customerID, pickUpDate, deliveryDate );
-*/
 
                     break;
                 case 2:
