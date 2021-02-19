@@ -24,12 +24,13 @@ public class Client { //main method
 
                     System.out.println("Er du registrert? false for nei, true for ja");
                     boolean registered = input.nextBoolean();
+                    Customer customer = null;
                     if (registered) {
                         boolean found = false; //test if written customerID is valid|x|
                         while(!found) {
                             System.out.println("Skriv inn ditt kunde nummer (index nummer):");
                             int customerIndexNumber = input.nextInt();
-                            Customer customer = carRental.getCustomers().get(customerIndexNumber);
+                            customer = carRental.getCustomers().get(customerIndexNumber);
                             if (!(customer == null))
                                 found = true;
 
@@ -53,7 +54,9 @@ public class Client { //main method
 
 
                         carRental.createCustomer(firstname, lastname, address, phoneNumber);
-                        System.out.println(carRental.getCustomers().size()-1);
+                        int customerIndex = carRental.getCustomers().size()-1;
+                        customer = carRental.getCustomers().get(customerIndex);
+                        System.out.println("Ditt kunde nummer er: " + customerIndex);
 
                     }
 
@@ -72,13 +75,14 @@ public class Client { //main method
                     System.out.println("Velg en by"); //search for all offices in city
                     String location = input.next();
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
+                    RentalOffice officeObject = null;
 
                     ArrayList<Car> availableCarsForOffice = new ArrayList<>();
                     System.out.println(offices.size());
                     offices.forEach(office -> System.out.println( office.getAddress().getCity()));
 //                    for(int i = 0 ; i < offices.size() ; i++)
                     for(int index = 0 ; index < offices.size();index++ ){
-                        RentalOffice officeObject = offices.get(index);
+                        officeObject = offices.get(index);
                         availableCarsForOffice = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
 
                         System.out.println("office cars:" + availableCarsForOffice.size());
@@ -87,13 +91,13 @@ public class Client { //main method
                             System.out.println(
                                     "Office: " + index + ". Car number: " + i
                                     + " Car info:" +  car.toString()
-                                    + " Pris: " + officeObject.getPriceMap()
+                                    + " Pris per dag: " + officeObject.getPriceMap().get(car.getCarClassification())
                             );
-                            //TODO: legg til pris (pricemap)
-
 
                         }
+
                     }
+
                     System.out.println("Velg kontor som inneholder bilen du ønsker:");
                     int chosenOffice = input.nextInt();
 
@@ -103,10 +107,12 @@ public class Client { //main method
                     Car car = offices.get(chosenOffice).getCarPark().get(chosenCar);
 
 
-//                   carRental.makeReservation( carRental, car, customer, pickUpDate, deliveryDate );
-
-                    //dersom null blei ikkje reservasjonen gjort, ellers returnerer reservasjonsID
-
+                    int reservationID = carRental.makeReservation( officeObject, car, customer, pickUpDate, deliveryDate );
+                    if (reservationID.equals(null)) { //TODO: my brain is liquid so i fix later
+                        System.out.println("Reservasjonen feilet");
+                    } else {
+                        System.out.println("Din reservasjon ble registrert med ID: " + reservationID);
+                    }
 
                     break;
                 case 2:
@@ -120,27 +126,6 @@ public class Client { //main method
             }
             input.close();
         }
-
-
-
-        // TODO: Menu system
-
-        // - search via internet , with existing costumer
-
-        // - rental office clerk , no customer
-
-        // pickup car event - prompt user for location and reservation id
-
-        // drop off event -
-
-        // helpmethods
-        // createAddress - customer
-
-/*        LocalDateTime now = LocalDateTime.now().plusDays(random.nextInt(364)).plusHours(random.nextInt(24));
-        System.out.println(now.toString());
-        LocalDateTime future = now.plusDays(random.nextInt(maxReservationLength)).plusHours(random.nextInt(24));
-        System.out.println(future);*/
-
 
     }
 
