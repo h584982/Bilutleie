@@ -85,7 +85,7 @@ public class Client { //main method
 
                     break;
                 case 2:
-
+                        pickUpSession();
 
                     break;
                 case 3:
@@ -150,6 +150,12 @@ public class Client { //main method
         System.out.println(now.toString());
         LocalDateTime future = now.plusDays(random.nextInt(maxReservationLength)).plusHours(random.nextInt(24));
         System.out.println(future);
+
+
+    }
+
+
+    private static void pickUpSession(){
 
 
     }
