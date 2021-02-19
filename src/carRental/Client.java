@@ -285,15 +285,22 @@ public class Client { //main method
         String surname = surnames.get(random.nextInt(surnames.size()));
         Integer phone = random.nextInt(90000000)+10000000;
         Long creditCard = null; // Can be null
-        if (random.nextBoolean()) {
-            if (random.nextBoolean())
-                creditCard = (random.nextLong() % 100000000000000L) + 5200000000000000L;
-            else
-                creditCard = (random.nextLong() % 100000000000000L) + 4100000000000000L;
-        }
         Address address = randomAddress();
+        if (random.nextBoolean()) {
+            if (random.nextBoolean()) {
+                creditCard = (random.nextLong() % 100000000000000L) + 5200000000000000L;
+            }
+            else{
+                creditCard = (random.nextLong() % 100000000000000L) + 4100000000000000L;
+            }
+            return new Customer(name, surname,address, phone, creditCard);
 
-        return null;//new Customer(name, surname, phone, creditCard);
+        } else
+        { return  new Customer(name, surname,address,phone);
+        }
+
+
+
 
     }
 
