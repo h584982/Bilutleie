@@ -40,7 +40,7 @@ public class Reservation {
 	 * @return
 	 */
 	public void activatePickUp() {
-			
+			 
 		startMilage = car.getMilage();
 	}
 	

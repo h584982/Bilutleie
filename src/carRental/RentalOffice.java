@@ -81,7 +81,7 @@ public class RentalOffice {
 	 * Deliver the car out and registrate the milage
 	 * @param reservation
 	 */
-	public void pickUpEvent(Reservation reservation) {
+	public void pickUpEvent(Reservation reservation) { 
 		
 		reservation.activatePickUp();
 	}
