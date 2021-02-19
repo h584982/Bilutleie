@@ -26,7 +26,7 @@ public class Client { //main method
                     System.out.println("Er du registrert? false for nei, true for ja");
                     boolean registered = input.nextBoolean();
                     if (registered) {
-                        boolean found = false; //test if written customerID is valid
+                        boolean found = false; //test if written customerID is validx|x||
                         while(!found) {
                             System.out.println("Skriv inn ditt kunde nummer (index nummer):");
                             int customerIndexNumber = input.nextInt();
@@ -175,14 +175,14 @@ public class Client { //main method
         while( true){
             Scanner input = new Scanner(System.in);
             System.out.println("Enter reservationID");
-
             int reservationID = input.nextInt();
+
             Integer officeID = null;
             LocalDateTime date = null;
 
             System.out.println("Is car delivered to new location y/n?:");
-
             String answer = input.next();
+
             if (answer.equals("y")){
                 System.out.println("Enter location id");
                 officeID = input.nextInt();
@@ -192,9 +192,18 @@ public class Client { //main method
                 return;
             }
 
+            System.out.println("Deliver now or at spesific date? y/n");
+            answer = input.next();
 
-            System.out.println("Enter date");
-            date = parseDateTime(input.next());
+            if (answer.equals("y")){
+                System.out.println("Enter date");
+                date = parseDateTime(input.next());
+            }
+            else if (!answer.equals("n")){
+                System.out.println("invalid answer! Aborting");
+                return;
+            }
+
             Integer price = null;
             if (date==null && officeID==null){
                 // same office same date
