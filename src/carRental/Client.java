@@ -31,7 +31,8 @@ public class Client { //main method
                             System.out.println("Skriv inn ditt kunde nummer (index nummer):");
                             int customerIndexNumber = input.nextInt();
                             Customer customer = carRental.getCustomers().get(customerIndexNumber);
-                            System.out.println(customer.toString());
+                            if (!(customer == null))
+                                found = true;
                         }
                     } else {
                         System.out.println("Skriv inn ditt fornavn:");
