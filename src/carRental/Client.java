@@ -44,7 +44,7 @@ public class Client { //main method
                     ArrayList<RentalOffice> offices = carRental.findOffices(location);
                     ArrayList<Car> availableCars = new ArrayList<>();
                     offices.forEach( (office) -> {
-                        availableCars.addAll(carRental.searchQuery(offices.get(office), pickUpDate, deliveryDate));
+                        availableCars.addAll(carRental.searchQuery(office, pickUpDate, deliveryDate));
                     });
 //                    offices.forEach( (n) -> { System.out.println(n.getAddress().getCity()); });
 
