@@ -6,9 +6,9 @@ public class Customer {
 	private String lastName;
 	private Address address; 
 	private int phoneNumber;
-	private Integer cardNumber;
+	private Long cardNumber;
 	
-	public Customer(String firstName, String lastName, Address address, int phoneNumber, int cardNumber) {
+	public Customer(String firstName, String lastName, Address address, int phoneNumber, Long cardNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -53,10 +53,10 @@ public class Customer {
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public int getCardNumber() {
+	public Long getCardNumber() {
 		return cardNumber;
 	}
-	public void setCardNumber(int cardNumber) {
+	public void setCardNumber(Long cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 }

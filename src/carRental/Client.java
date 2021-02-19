@@ -33,17 +33,22 @@ public class Client { //main method
                     System.out.println("Hva er ditt kunde nummer");
                     int customerID = input.nextInt();
 */
-                    System.out.println("Velg et kontor");
-                    String location = input.nextLine(); // TODO: doesn't work
-                    ArrayList<RentalOffice> offices = carRental.findOffices(location);
-                    offices.forEach( (n) -> { System.out.println(n.toString()); });
-
-
                     System.out.println("Hvilken dag henter du ut bilen?"); //how many days into the future
                     LocalDateTime pickUpDate = LocalDateTime.now().plusDays(input.nextInt());
 
                     System.out.println("Hvor lenge skal du låne bilen?"); //days from pickUpDate to deliveryDate
                     LocalDateTime deliveryDate = pickUpDate.plusDays(input.nextInt());
+
+                    System.out.println("Velg et kontor");
+                    String location = input.next(); // TODO: doesn't work
+                    ArrayList<RentalOffice> offices = carRental.findOffices(location);
+                    ArrayList<Car> availableCars = new ArrayList<>();
+                    offices.forEach( (n) -> { });
+                    offices.forEach( (n) -> { System.out.println(n.getAddress().getCity()); });
+
+
+
+
 
 /*
 
