@@ -138,13 +138,16 @@ public class CarRental {
     }
 
 
-    public boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
+    public Integer makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
         // TODO
 
 
         Reservation reservation = office.createReservation(this.giveNextReservationID(), car, customer,pickUpDate, dropOffDate);
         this.reservationsMap.put(reservation.getReservationId(), reservation);
-        return true;
+        if(reservation != null)
+            return reservation.getReservationId();
+        else
+            return null;
     }
 
     public String getName() {
