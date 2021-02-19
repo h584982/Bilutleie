@@ -8,8 +8,8 @@ public class Car {
 	private String color;
 	private char carClassification;
 	private int milage;
-	
-	
+
+
 	public Car(String registrationId, String carBrand, String carModel, String color, char carClassification,
 			int milage) {
 		super();
@@ -80,9 +80,15 @@ public class Car {
 	public void setMilage(int milage) {
 		this.milage = milage;
 	}
-	
-	
 
-	
 
+	@Override
+	public String toString() {
+		return "Car{" +
+				"carBrand='" + carBrand + '\'' +
+				", carModel='" + carModel + '\'' +
+				", color='" + color + '\'' +
+				", carClassification=" + carClassification +
+				'}';
+	}
 }
