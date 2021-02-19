@@ -77,6 +77,12 @@ public class RentalOffice {
 		return reservation;
 	}
 	
+	public boolean pickUpEvent(Reservation reservation) {
+		
+		
+		return true;
+	}
+	
 	// Processs reservation, update reservations and reservationArchive, calculate and return price
 	public int dropOffEvent(Reservation reservation, int i){
 
