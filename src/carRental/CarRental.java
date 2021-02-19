@@ -102,12 +102,13 @@ public class CarRental {
         return true;
     }
 
-    public int dropOffCar(int dropOffOffice, int reservationID, int dropOffMilage)
+    public int dropOffCar(int dropOffOffice, int reservationID)
     {
+
         Reservation reservation = this.reservationsMap.get(reservationID);
-        Optional<RentalOffice> office = getOffices().stream().filter(off -> off.getOfficeId() == dropOffOffice).findFirst();
-        int price = office.get().dropOffEvent(reservation, dropOffMilage);
-        return price;
+        RentalOffice office = offices.get(dropOffOffice);
+        return office.dropOffEvent(reservation);
+
     }
 
     public boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
