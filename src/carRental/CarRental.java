@@ -107,18 +107,36 @@ public class CarRental {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
         LocalDateTime dropOffDate = reservation.getDeliveryDueDate();
-        RentalOffice office = offices.get(dropOffOffice);
-        int price = office.dropOffEvent(reservation, dropOffDate);
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+        int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
         return price;
     }
     public int dropOffCar(int dropOffOffice, int reservationID, LocalDateTime dropOffDate)
     {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
-        RentalOffice office = offices.get(dropOffOffice);
-        int price = office.dropOffEvent(reservation, dropOffDate);
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+        int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
         return price;
     }
+    public int dropOffCar(int reservationID)
+    {
+
+        Reservation reservation = this.reservationsMap.get(reservationID);
+        LocalDateTime dropOffDate = reservation.getDeliveryDueDate();
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+        int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
+        return price;
+    }
+    public int dropOffCar(int reservationID, LocalDateTime dropOffDate)
+    {
+
+        Reservation reservation = this.reservationsMap.get(reservationID);
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+        int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
+        return price;
+    }
+
 
     public boolean makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
         // TODO
