@@ -50,9 +50,9 @@ public class Client { //main method
                         RentalOffice officeObject = offices.get(index);
                         availableCars = carRental.searchQuery(officeObject, pickUpDate, deliveryDate);
 ;
-                        System.out.println("office cars:" + officeCars.size());
-                        for(int i = 0; i < officeCars.size() ;i++){
-                            Car car = officeCars.get(i);
+                        System.out.println("office cars:" + availableCars.size());
+                        for(int i = 0; i < availableCars.size() ;i++){
+                            Car car = availableCars.get(i);
                             System.out.println("Office: " + index + ". Car number: " + i + " Car info:" +  car.toString());
                             //TODO: legg til pris (pricemap)
 
