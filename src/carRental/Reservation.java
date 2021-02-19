@@ -36,9 +36,8 @@ public class Reservation {
 	}
 	
 	/**
-	 * Set correct milage and update the cars milage by an random amount up to 500 
+	 * Set correct mileage and update the cars mileage by an random amount up to 500 
 	 * @param creditCard
-	 * @return
 	 */
 	public void activatePickUp() {
 			 
