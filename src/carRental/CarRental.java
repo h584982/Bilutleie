@@ -106,8 +106,17 @@ public class CarRental {
     {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
+        LocalDateTime dropOffDate = reservation.getDeliveryDueDate();
         RentalOffice office = offices.get(dropOffOffice);
-        int price = office.dropOffEvent(reservation);
+        int price = office.dropOffEvent(reservation, dropOffDate);
+        return price;
+    }
+    public int dropOffCar(int dropOffOffice, int reservationID, LocalDateTime dropOffDate)
+    {
+
+        Reservation reservation = this.reservationsMap.get(reservationID);
+        RentalOffice office = offices.get(dropOffOffice);
+        int price = office.dropOffEvent(reservation, dropOffDate);
         return price;
     }
 
