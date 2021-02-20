@@ -127,7 +127,21 @@ public class Reservation {
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Reservation{" +
+				"reservationId=" + reservationId +
+				", customer=" + customer +
+				", pickUpOffice=" + pickUpOffice +
+				", dropOffOffice=" + dropOffOffice +
+				", pickUpDate=" + pickUpDate +
+				", deliveryDueDate=" + deliveryDueDate +
+				", car=" + car +
+				", startMilage=" + startMilage +
+				", endMilage=" + endMilage +
+				", dropOffDate=" + dropOffDate +
+				", isPaid=" + isPaid +
+				'}';
+	}
 }
