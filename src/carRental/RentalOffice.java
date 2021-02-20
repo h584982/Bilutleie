@@ -49,12 +49,27 @@ public class RentalOffice {
             // Only need to check cars still in carSet
             if (carSet.contains(reservation.getCar())) {
 
-                // Check and remove car if queried pickup and drop off time is within the reservation time period
-                if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
-                    if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
-                        carSet.remove(reservation.getCar());
-                    }
-                }
+				if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
+					carSet.remove(reservation.getCar());
+					continue;
+				}
+				if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
+					carSet.remove(reservation.getCar());
+					continue;
+				}
+				if (pickUpTime.isBefore(reservation.getPickUpDate()) && delivieryDueDate.isAfter(reservation.getDeliveryDueDate())) {
+					carSet.remove(reservation.getCar());
+					continue;
+				}
+
+
+/*
+                if (pickUpTime.isBefore(reservation.getPickUpDate()) || pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
+                	if (delivieryDueDate.isBefore(reservation.getPickUpDate()) || delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
+
+					}
+				}
+*/
             }
         }
 		
