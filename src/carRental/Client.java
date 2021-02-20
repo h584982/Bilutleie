@@ -15,9 +15,11 @@ public class Client { //main method
 
     public static void main(String[] args) {
 
-
+        // TODO: Add better feedback messages
+        // TODO: "User proof" inputs
+        // TODO: Ensure valid pickup and drop of events
+        //
         CarRental carRental = setupCarRental();
-
 
 
 
@@ -113,7 +115,7 @@ public class Client { //main method
                     System.out.println("Velg bil i det valgte kontoret:");
                     int chosenCar = input.nextInt();
 
-                    Car car = offices.get(chosenOffice).getCarPark().get(chosenCar);
+                    Car car = carRental.searchQuery(offices.get(chosenOffice), pickUpDate, deliveryDate).get(chosenCar);
 
 
                     // Just had to change from int to Integer, as primitives like int, char and long cannot be null.
@@ -145,7 +147,7 @@ public class Client { //main method
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.println("Enter ReservationID: ");
-            String reply = validateIntInput(carRental, input);
+            String reply = validateIntInput(carRental, input, carRental.getReservationsMap().size());
             if (reply == null) return;
             Integer reservationID = Integer.parseInt(reply);
 
@@ -164,7 +166,7 @@ public class Client { //main method
             }
             carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
             System.out.println(carRental.getReservationsMap().get(reservationID).toString());
-
+            break;
         }
 
 
@@ -175,7 +177,7 @@ public class Client { //main method
 
         Scanner input = new Scanner(System.in);
         System.out.println("Enter reservationID");
-        String reply = validateIntInput(carRental, input);
+        String reply = validateIntInput(carRental, input, carRental.getReservationsMap().size());
         if (reply == null) return;
         Integer reservationID = Integer.parseInt(reply);
 
@@ -187,7 +189,7 @@ public class Client { //main method
 
         if (answer.equals("y")) {
             System.out.println("Enter location id");
-            reply = validateIntInput(carRental, input);
+            reply = validateIntInput(carRental, input, carRental.getOffices().size());
             if (reply == null) return;
 
 
@@ -235,10 +237,10 @@ public class Client { //main method
     }
 
 
-    private static String validateIntInput(CarRental carRental, Scanner input) {
+    private static String validateIntInput(CarRental carRental, Scanner input, Integer size) {
 
         String reply = input.next();
-        if (!reply.matches("[0-9]+") || Integer.parseInt(reply) > carRental.getOffices().size()) {
+        if (!reply.matches("[0-9]+") || Integer.parseInt(reply) > size) {
             System.out.println("Invalid input!");
             return null;
         }
