@@ -106,8 +106,10 @@ public class Client { //main method
 
                     Car car = offices.get(chosenOffice).getCarPark().get(chosenCar);
 
-
-                    int reservationID = carRental.makeReservation( officeObject, car, customer, pickUpDate, deliveryDate );
+                    
+                    // Just had to change from int to Integer, as primitives like int, char and long cannot be null.
+                    // They are not considered full object and therefore does not have the ability to be null.
+                    Integer reservationID = carRental.makeReservation( officeObject, car, customer, pickUpDate, deliveryDate );
                     if (reservationID.equals(null)) { //TODO: my brain is liquid so i fix later
                         System.out.println("Reservasjonen feilet");
                     } else {
