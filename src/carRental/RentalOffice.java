@@ -44,6 +44,7 @@ public class RentalOffice {
 	 */
 	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
 		ArrayList<Car> carSet = new ArrayList<Car>(carPark);
+		System.out.println(carSet.size());
         for (Reservation reservation : reservations) {
 
             // Only need to check cars still in carSet
@@ -51,14 +52,27 @@ public class RentalOffice {
 
 				if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
 					carSet.remove(reservation.getCar());
+					System.out.println("conflict pickup\n new pickuptime" + pickUpTime.toString()
+							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
+							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
+							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
 				if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
 					carSet.remove(reservation.getCar());
+					System.out.println("conflict delivery\n new deliverytime" + delivieryDueDate.toString()
+							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
+							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
+							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
 				if (pickUpTime.isBefore(reservation.getPickUpDate()) && delivieryDueDate.isAfter(reservation.getDeliveryDueDate())) {
 					carSet.remove(reservation.getCar());
+					System.out.println("conflict long reservation\n new deliverytime" + delivieryDueDate.toString()
+							+ "\n new pickuptime" + pickUpTime.toString()
+							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
+							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
+							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
 
@@ -72,7 +86,8 @@ public class RentalOffice {
 */
             }
         }
-		
+
+		System.out.println(carSet.size());
 		return carSet;
 	}
 	
