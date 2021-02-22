@@ -56,8 +56,8 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 	
 	@Test
 	public void createCustomer() {
-		CarRental emptyCarRental = new CarRental();
-		emptyCarRental.createCustomer(Client.randomCustomer());
+		CarRental emptyCarRental = new CarRental("Test Rental", 55555555, new ArrayList<Customer>(), new ArrayList<RentalOffice>(),Client.randomAddress());
+		emptyCarRental.createCustomer("Jens", "Jensen", Client.randomAddress(), 39399299);
 		assertTrue(emptyCarRental.getCustomers().size()==1);
 		
 	}

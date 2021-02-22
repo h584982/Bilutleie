@@ -121,7 +121,7 @@ public class Client { //main method
                     // Just had to change from int to Integer, as primitives like int, char and long cannot be null.
                     // They are not considered full object and therefore does not have the ability to be null.
                     Integer reservationID = carRental.makeReservation(officeObject, car, customer, pickUpDate, deliveryDate);
-                    if (reservationID.equals(null)) { //TODO: my brain is liquid so i fix later
+                    if (reservationID.equals(null)) {
                         System.out.println("Reservasjonen feilet");
                     } else {
                         System.out.println("Din reservasjon ble registrert med ID: " + reservationID);
