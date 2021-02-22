@@ -107,4 +107,55 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 		
 	}
 
+
+	@Test
+	public void searchCars() {
+
+		LocalDateTime pickUpDate = LocalDateTime.of(2021, 2, 25, 14, 30);
+		LocalDateTime dropOffDate = pickUpDate.plusDays(8);
+		RentalOffice office = carRental.getOffices().get(0);
+		office.setReservations(new ArrayList<Reservation>());
+		office.setCarPark(new ArrayList<Car>());
+		office.getCarPark().add(Client.randomCar());
+
+
+		// Check car is avaialbe
+		assertTrue(office.searchCars(pickUpDate, dropOffDate).size()==1);
+
+
+		Car car1 = office.getCarPark().get(0);
+		Customer customer1=Client.randomCustomer();
+
+		Integer reservationID = carRental.makeReservation(office, car1, customer1,pickUpDate, dropOffDate);
+		Reservation reservation = carRental.getReservationsMap().get(reservationID);
+
+
+		// Check car is avaialbe when period before reservation
+		assertTrue(office.searchCars(pickUpDate.minusDays(100), dropOffDate.minusDays(100).size()==1);
+
+		// Check car is avaialbe when period after reservation
+		assertTrue(office.searchCars(pickUpDate.plusDays(100), dropOffDate.plusDays(100)).size()==1);
+
+
+		// Check conflict at exactly same DateTimes
+		assertTrue(office.searchCars(pickUpDate, dropOffDate).size()==0);
+
+		// Check conflict when startDate inside reservation
+		assertTrue(office.searchCars(pickUpDate.plusDays(2), dropOffDate.plusDays(6)).size()==0);
+
+		// Check conflict when deliveryDueDate inside reservation
+		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.minusDays(2).size()==0);
+
+		// Check conflict when wanted period is inside reservation
+		assertTrue(office.searchCars(pickUpDate.plusDays(2), dropOffDate.minusDays(2).size()==0);
+
+		// Check conflict when reservation inside wanted period
+		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.plusDays(2).size()==0);
+
+
+
+
+	}
+
+
 }
