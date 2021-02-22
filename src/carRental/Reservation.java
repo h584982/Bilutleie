@@ -3,7 +3,7 @@ package carRental;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class Reservation {
+public class Reservation { 
 
 	private int reservationId; 
 	private Customer customer;
@@ -12,8 +12,8 @@ public class Reservation {
 	private LocalDateTime pickUpDate;
 	private LocalDateTime deliveryDueDate;
 	private Car car;
-	private int startMilage;
-	private int endMilage;
+	private int startMileage;
+	private int endMileage;
 	private LocalDateTime dropOffDate;
 	private boolean isPaid;
 	
@@ -41,7 +41,7 @@ public class Reservation {
 	 */
 	public void activatePickUp() {
 			 
-		startMilage = car.getMilage();
+		startMileage = car.getMilage();
 		
 		Random random = new Random();
 		
@@ -49,8 +49,8 @@ public class Reservation {
 	}
 	/**
 	 * Updates information about mileage, drop off date and drop off office 
-	 * @param droppOffDate
-	 * @param droppOffOffice
+	 * @param dropOffDate
+	 * @param dropOffOffice
 	 */
 	public void returnCar(LocalDateTime dropOffDate, int dropOffOffice) {
 		
@@ -104,16 +104,16 @@ public class Reservation {
 		this.car = car;
 	}
 	public int getStartMilage() {
-		return startMilage;
+		return startMileage;
 	}
 	public void setStartMilage(int startMilage) {
-		this.startMilage = startMilage;
+		this.startMileage = startMilage;
 	}
 	public int getEndMilage() {
-		return endMilage;
+		return endMileage;
 	}
 	public void setEndMilage(int endMilage) {
-		this.endMilage = endMilage;
+		this.endMileage = endMilage;
 	}
 	public LocalDateTime getDropOffDate() {
 		return dropOffDate;
@@ -138,8 +138,8 @@ public class Reservation {
 				", pickUpDate=" + pickUpDate +
 				", deliveryDueDate=" + deliveryDueDate +
 				", car=" + car +
-				", startMilage=" + startMilage +
-				", endMilage=" + endMilage +
+				", startMilage=" + startMileage +
+				", endMilage=" + endMileage +
 				", dropOffDate=" + dropOffDate +
 				", isPaid=" + isPaid +
 				'}';

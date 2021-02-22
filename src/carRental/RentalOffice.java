@@ -35,10 +35,10 @@ public class RentalOffice {
 	/**
 	 * Search through an office car park and remove cars from the list that is reserved for the given time
 	 * @param pickUpTime
-	 * @param delivieryDueDate
+	 * @param deliveryDueDate
 	 * @return a list of available cars
 	 */
-	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
+	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime deliveryDueDate) {
 		ArrayList<Car> carSet = new ArrayList<Car>(carPark);
 		System.out.println(carSet.size());
         for (Reservation reservation : reservations) {
@@ -54,17 +54,17 @@ public class RentalOffice {
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
-				if (delivieryDueDate.isAfter(reservation.getPickUpDate()) && delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
+				if (deliveryDueDate.isAfter(reservation.getPickUpDate()) && deliveryDueDate.isBefore(reservation.getDeliveryDueDate())) {
 					carSet.remove(reservation.getCar());
-					System.out.println("conflict delivery\n new deliverytime" + delivieryDueDate.toString()
+					System.out.println("conflict delivery\n new deliverytime" + deliveryDueDate.toString()
 							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
 							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
-				if (pickUpTime.isBefore(reservation.getPickUpDate()) && delivieryDueDate.isAfter(reservation.getDeliveryDueDate())) {
+				if (pickUpTime.isBefore(reservation.getPickUpDate()) && deliveryDueDate.isAfter(reservation.getDeliveryDueDate())) {
 					carSet.remove(reservation.getCar());
-					System.out.println("conflict long reservation\n new deliverytime" + delivieryDueDate.toString()
+					System.out.println("conflict long reservation\n new deliverytime" + deliveryDueDate.toString()
 							+ "\n new pickuptime" + pickUpTime.toString()
 							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
 							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
