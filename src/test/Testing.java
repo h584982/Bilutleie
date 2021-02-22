@@ -55,14 +55,8 @@ class Testing {
 		Integer reservationID= carRental.makeReservation(office, car, customer,pickUpDate, dropOffDate);
 		Reservation reservation=carRental.getReservationsMap().get(reservationID);
 		
-	//	boolean reservation = carRental.pickUpCar(0);
-		 
-	//	 RentalOffice office = offices.get(reservation.getPickUpOffice());
-		 
-	//	 Reservation reservation = rentalOffice.getReservations().get(0);
-		
-		    assertTrue(rentalOffice.getReservations().contains(reservation));
-		    assertTrue(rentalOffice.getReservations() != null);
+		    assertTrue(office.getReservations().contains(reservation));
+		    assertTrue(office.getReservations() != null);
 
 	}
 	
@@ -81,12 +75,10 @@ class Testing {
 		Integer reservationID= carRental.makeReservation(office, car, customer,pickUpDate, dropOffDate);
 		Reservation reservation=carRental.getReservationsMap().get(reservationID);
 		
-	//	Reservation reservation = rentalOffice.getReservations().get(0);
-		
 		 carRental.dropOffCar(reservation.getReservationId());
 
-		   assertFalse(rentalOffice.getReservations().contains(reservation));
-		   assertTrue(rentalOffice.getReservations() == null);
+		   assertFalse(office.getReservations().contains(reservation));
+		   assertTrue(office.getReservations() == null);
 		
 	}
 	
