@@ -102,6 +102,19 @@ public class CarRental {
         return true;
     }
 
+
+    public int dropOffCar(int reservationID)
+    {
+
+        Reservation reservation = this.reservationsMap.get(reservationID);
+        LocalDateTime dropOffDate = reservation.getDeliveryDueDate();
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+
+        int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
+        return price;
+    }
+
+
     public int dropOffCar(int dropOffOffice, int reservationID)
     {
 
@@ -111,30 +124,33 @@ public class CarRental {
         int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
         return price;
     }
-    public int dropOffCar(int dropOffOffice, int reservationID, LocalDateTime dropOffDate)
-    {
 
-        Reservation reservation = this.reservationsMap.get(reservationID);
-        RentalOffice office = offices.get(reservation.getPickUpOffice());
-        int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
-        return price;
-    }
-    public int dropOffCar(int reservationID)
-    {
 
-        Reservation reservation = this.reservationsMap.get(reservationID);
-        LocalDateTime dropOffDate = reservation.getDeliveryDueDate();
-        RentalOffice office = offices.get(reservation.getPickUpOffice());
-        int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
-        return price;
-    }
     public int dropOffCar(int reservationID, LocalDateTime dropOffDate)
     {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
         RentalOffice office = offices.get(reservation.getPickUpOffice());
-        int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
-        return price;
+
+        if (reservation.getPickUpDate().isBefore(dropOffDate)) { // test if dropOffDate is before pickUpDate
+            int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
+            return price;
+        }
+        return -1; //if illegal dropOffDate
+    }
+
+
+    public int dropOffCar(int dropOffOffice, int reservationID, LocalDateTime dropOffDate)
+    {
+
+        Reservation reservation = this.reservationsMap.get(reservationID);
+        RentalOffice office = offices.get(reservation.getPickUpOffice());
+
+        if (reservation.getPickUpDate().isBefore(dropOffDate)) { // test if dropOffDate is before pickUpDate
+            int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
+            return price;
+        }
+        return -1; //if illegal dropOffDate
     }
 
 
@@ -148,6 +164,10 @@ public class CarRental {
             return reservation.getReservationId();
         else
             return null;
+    }
+
+    private boolean deliveryBeforePickup (LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
+        return (pickUpDate.isBefore(dropOffDate));
     }
 
     public String getName() {
