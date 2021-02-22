@@ -171,6 +171,47 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 
 
 	}
+	@Test
+	public void pickUpEvent(){
+	  	RentalOffice office = carRental.getOffices().get(0);
+
+	  	Reservation reservation = office.getReservations().get(0);
+		int originalCarMilage = reservation.getCar().getMilage();
+
+		office.pickUpEvent(reservation);
+
+		assertTrue(reservation.getStartMilage() == originalCarMilage && reservation.getStartMilage() < reservation.getCar().getMilage());
+
+
+
+
+	}
+
+	@Test
+	public void dropOffEvent(){
+
+		LocalDateTime pickUpDate = LocalDateTime.now();
+		LocalDateTime dropOffDate = pickUpDate.plusDays(8);
+		RentalOffice office = carRental.getOffices().get(0);
+		office.setReservations(new ArrayList<Reservation>());
+		office.setCarPark(new ArrayList<Car>());
+		office.getCarPark().add(Client.randomCar());
+
+
+		Car car1 = office.getCarPark().get(0);
+		office.getPriceMap().put(car1.getCarClassification(), 1000);
+
+		Customer customer1=Client.randomCustomer();
+
+		Integer reservationID = carRental.makeReservation(office, car1, customer1,pickUpDate, dropOffDate);
+		Reservation reservation = carRental.getReservationsMap().get(reservationID);
+		carRental.pickUpCar(reservationID);
+		assertTrue(carRental.dropOffCar(reservationID)==8000);
+
+
+	}
+
+
 
 
 }
