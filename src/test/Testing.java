@@ -89,14 +89,14 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 	@Test
 	public void makeReservation() {
 		
-		Car b1 = new Car("BT54321", "Audi", "E-tron", "Grå", 'B', 0);
+		Car c1 = new Car("BT54321", "Audi", "E-tron", "Grå", 'B', 0);
 		Reservation r1 = new Reservation();
 		
-		r1.makeReservation("Bertel O. Steen",b1, customer,pickUpDate, dropOffDate);
+		r1.makeReservation("Bertel O. Steen",c1, customer,pickUpDate, dropOffDate);
 		
 		
 		
-		assertFalse(b1.isAvailable());
+		assertFalse(c1.isAvailable());
 		
 	}
 
