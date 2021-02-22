@@ -92,6 +92,8 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 		Car c1 = new Car("BT54321", "Audi", "E-tron", "Grå", 'B', 0);
 		Reservation r1 = new Reservation();
 		
+		LocalDateTime pickUpDate=LocalDateTime.of(2021, 2, 25, 14, 30);
+		LocalDateTime dropOffDate=pickUpDate.plusDays(5);
 		r1.makeReservation("Bertel O. Steen",c1, customer,pickUpDate, dropOffDate);
 		
 		
