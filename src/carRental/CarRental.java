@@ -71,13 +71,13 @@ public class CarRental {
      *
      * @param office
      * @param pickUpTime
-     * @param delivieryDueDate
+     * @param deliveryDueDate
      * @return
      */
-    public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
+    public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime deliveryDueDate) {
 
     	
-    	ArrayList<Car> availableCars = office.searchCars(pickUpTime, delivieryDueDate);
+    	ArrayList<Car> availableCars = office.searchCars(pickUpTime, deliveryDueDate);
     		
         return availableCars;
 
