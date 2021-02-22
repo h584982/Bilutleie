@@ -26,7 +26,7 @@ class Testing {
 //	}
 	
 	  private RentalOffice rentalOffice = new RentalOffice();
-	  private CarRental carRental = new CarRental();
+	  private CarRental carRental=null;
 	  
 	  private Car tesla;
 	  private Customer customer;
@@ -89,17 +89,21 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 	
 	@Test
 	public void makeReservation() {
-		
-		Car c1 = new Car("BT54321", "Audi", "E-tron", "Grå", 'B', 0);
-		Reservation r1 = new Reservation();
-		
+
 		LocalDateTime pickUpDate=LocalDateTime.of(2021, 2, 25, 14, 30);
 		LocalDateTime dropOffDate=pickUpDate.plusDays(5);
-//		r1.makeReservation("Bertel O. Steen",c1, customer,pickUpDate, dropOffDate);
+		RentalOffice office=carRental.getOffices().get(0);
+		office.setReservations(new ArrayList<Reservation>());
+		
+		Car car=office.searchCars(pickUpDate, dropOffDate).get(0);
+		Customer customer=Client.randomCustomer();
+		
+		Integer reservationID= carRental.makeReservation(office, car, customer,pickUpDate, dropOffDate);
+		Reservation reservation=carRental.getReservationsMap().get(reservationID);
 		
 		
-		
-//		assertFalse(c1.isAvailable());
+		assertTrue(reservation.getDeliveryDueDate().equals(dropOffDate));
+		assertTrue(reservation.getPickUpDate().equals(pickUpDate));
 		
 	}
 
