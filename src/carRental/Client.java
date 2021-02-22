@@ -199,7 +199,7 @@ public class Client { //main method
             return;
         }
 
-        System.out.println("Deliver now or at specific date? y/n");
+        System.out.println("Deliver on different date from today? y/n?:");
         answer = input.next();
 
         if (answer.equals("y")) {
@@ -230,8 +230,13 @@ public class Client { //main method
             // new everything
             price = carRental.dropOffCar(officeID, reservationID, date);
         }
-        System.out.println("Car drop off success. Amount due:" + price);
-        System.out.println(carRental.getReservationsMap().get(reservationID).toString());
+
+        if (price == -1) { //if price return = -1 (dropOffDate is before pickUpDate)
+            System.out.println("Illegal dropOffDate - Car has not been delivered");
+            return;
+        }
+        System.out.println("Car drop off success. Amount due:" + price + "\n");
+        System.out.println(carRental.getReservationsMap().get(reservationID).toString() + "\n\n");
 
 
     }

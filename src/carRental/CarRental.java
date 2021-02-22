@@ -84,11 +84,12 @@ public class CarRental {
 
     }
 
-    private void presentCars() {
-        //TODO
-    }
-
-
+    /**
+     * Let a customer pick up a car and check if the customer got a registered credit card. 
+     * Updates values in reservation about the car at the pick up time
+     * @param reservationID
+     * @return true if successfully picking up a car
+     */
     public boolean pickUpCar(int reservationID) {
 
         Reservation reservation = this.reservationsMap.get(reservationID);
@@ -103,6 +104,11 @@ public class CarRental {
     }
 
 
+    /**
+     * Returns a car to the same office and to the same date as the reservation and calculates price.
+     * @param reservationID
+     * @return price for the reservation
+     */
     public int dropOffCar(int reservationID)
     {
 
@@ -114,7 +120,12 @@ public class CarRental {
         return price;
     }
 
-
+    /**
+     * Returns a car to another office, but to the same date as the reservation and calculates price.
+     * @param dropOffOffice
+     * @param reservationID
+     * @return price for the reservation
+     */
     public int dropOffCar(int dropOffOffice, int reservationID)
     {
 
@@ -125,7 +136,12 @@ public class CarRental {
         return price;
     }
 
-
+    /**
+ 	* Returns a car to the same office, but to another time as the reservation and calculates price.
+ 	* @param reservationID
+ 	* @param dropOffDate
+ 	* @return price for the reservation
+ 	*/
     public int dropOffCar(int reservationID, LocalDateTime dropOffDate)
     {
 
@@ -139,7 +155,13 @@ public class CarRental {
         return -1; //if illegal dropOffDate
     }
 
-
+    /**
+     * Returns a car to another office and to another time than the reservation and calculates price.
+     * @param dropOffOffice
+     * @param reservationID
+     * @param dropOffDate
+     * @return price for the reservation
+     */
     public int dropOffCar(int dropOffOffice, int reservationID, LocalDateTime dropOffDate)
     {
 
@@ -154,21 +176,20 @@ public class CarRental {
     }
 
 
+    /**
+     * Creates a new reservation with the given parameters and puts it in the reservation map
+     * @param office
+     * @param car
+     * @param customer
+     * @param pickUpDate
+     * @param dropOffDate
+     * @return
+     */
     public Integer makeReservation(RentalOffice office, Car car, Customer customer, LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
-        // TODO
-
-
         Reservation reservation = office.createReservation(this.giveNextReservationID(), car, customer,pickUpDate, dropOffDate);
         this.reservationsMap.put(reservation.getReservationId(), reservation);
-        if(reservation != null)
-            return reservation.getReservationId();
-        else
-            return null;
-    }
-
-    private boolean deliveryBeforePickup (LocalDateTime pickUpDate, LocalDateTime dropOffDate) {
-        return (pickUpDate.isBefore(dropOffDate));
-    }
+         return reservation.getReservationId();
+    }  
 
     public String getName() {
         return name;
