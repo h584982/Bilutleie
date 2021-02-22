@@ -27,6 +27,7 @@ class Testing {
 	
 	  private RentalOffice rentalOffice = new RentalOffice();
 	  private CarRental carRental = new CarRental();
+	  
 	  private Car tesla;
 	  private Customer customer;
 
