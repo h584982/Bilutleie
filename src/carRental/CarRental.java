@@ -71,13 +71,13 @@ public class CarRental {
      *
      * @param office
      * @param pickUpTime
-     * @param delivieryDueDate
+     * @param deliveryDueDate
      * @return
      */
-    public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime delivieryDueDate) {
+    public ArrayList<Car> searchQuery(RentalOffice office, LocalDateTime pickUpTime, LocalDateTime deliveryDueDate) {
 
     	
-    	ArrayList<Car> availableCars = office.searchCars(pickUpTime, delivieryDueDate);
+    	ArrayList<Car> availableCars = office.searchCars(pickUpTime, deliveryDueDate);
     		
         return availableCars;
 
@@ -149,7 +149,14 @@ public class CarRental {
         RentalOffice office = offices.get(reservation.getPickUpOffice());
 
         if (reservation.getPickUpDate().isBefore(dropOffDate)) { // test if dropOffDate is before pickUpDate
+
+            if (dropOffDate.isBefore(reservation.getDropOffDate())) { //if dropOffDate is before scheduled delivery, price remain same as before TODO:CHECK IF LEGAL
+                int price = office.dropOffEvent(reservation, reservation.getDropOffDate(), office.getOfficeId());
+                return price;
+            }
+
             int price = office.dropOffEvent(reservation, dropOffDate, office.getOfficeId());
+
             return price;
         }
         return -1; //if illegal dropOffDate
@@ -169,7 +176,14 @@ public class CarRental {
         RentalOffice office = offices.get(reservation.getPickUpOffice());
 
         if (reservation.getPickUpDate().isBefore(dropOffDate)) { // test if dropOffDate is before pickUpDate
+
+            if (dropOffDate.isBefore(reservation.getDropOffDate())) { //if dropOffDate is before scheduled delivery, price remain same as before TODO:CHECK IF LEGAL
+                int price = office.dropOffEvent(reservation, reservation.getDropOffDate(), dropOffOffice);
+                return price;
+            }
+
             int price = office.dropOffEvent(reservation, dropOffDate, dropOffOffice);
+
             return price;
         }
         return -1; //if illegal dropOffDate

@@ -118,10 +118,8 @@ public class Client { //main method
                     Car car = carRental.searchQuery(offices.get(chosenOffice), pickUpDate, deliveryDate).get(chosenCar);
 
 
-                    // Just had to change from int to Integer, as primitives like int, char and long cannot be null.
-                    // They are not considered full object and therefore does not have the ability to be null.
                     Integer reservationID = carRental.makeReservation(officeObject, car, customer, pickUpDate, deliveryDate);
-                    if (reservationID.equals(null)) { //TODO: my brain is liquid so i fix later
+                    if (reservationID.equals(null)) {
                         System.out.println("Reservasjonen feilet");
                     } else {
                         System.out.println("Din reservasjon ble registrert med ID: " + reservationID);
@@ -137,14 +135,15 @@ public class Client { //main method
 
                     break;
             }
-            //input.close();
         }
 
     }
 
 
     private static void pickUpSession(CarRental carRental) {
+
         Scanner input = new Scanner(System.in);
+
         while (true) {
             System.out.println("Enter ReservationID: ");
             String reply = validateIntInput(carRental, input, carRental.getReservationsMap().size());
@@ -153,19 +152,29 @@ public class Client { //main method
 
             boolean hasCreditCard = carRental.pickUpCar(reservationID);
             if (hasCreditCard) {
-                System.out.println("Car pick up complete");
+                System.out.println("Car pick up complete\n");
 
                 break;
             }
-            System.out.println("No creditcard information found");
-            System.out.println("Please enter credit information, or 'c' for cancel");
-            String creditcard = input.next();
-            if (creditcard.equals("c")) {
-                System.out.println("pickup failed");
-                break;
+
+            while (true) {
+
+                System.out.println("No creditcard information found");
+                System.out.println("Please enter credit information, or 'c' for cancel");
+                String creditcard = input.next();
+
+                if (creditcard.equals("c")) {
+                    System.out.println("pickup failed");
+                    break;
+                } else if (creditcard.length() == 16) {
+                    System.out.println("Invalid creditcard information - try again");
+                } else {
+
+                    carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
+                    System.out.println(carRental.getReservationsMap().get(reservationID).toString());
+                    System.out.println("Car pick up complete\n");
+                }
             }
-            carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
-            System.out.println(carRental.getReservationsMap().get(reservationID).toString());
             break;
         }
 

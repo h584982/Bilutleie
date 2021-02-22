@@ -49,8 +49,8 @@ public class Reservation {
 	}
 	/**
 	 * Updates information about mileage, drop off date and drop off office 
-	 * @param droppOffDate
-	 * @param droppOffOffice
+	 * @param dropOffDate
+	 * @param dropOffOffice
 	 */
 	public void returnCar(LocalDateTime dropOffDate, int dropOffOffice) {
 		
