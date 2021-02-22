@@ -78,7 +78,7 @@ class Testing {
 		 carRental.dropOffCar(reservation.getReservationId());
 
 		   assertFalse(office.getReservations().contains(reservation));
-		   assertTrue(office.getReservations() == null);
+	//	   assertTrue(office.getReservations() == null);
 		
 	}
 	
