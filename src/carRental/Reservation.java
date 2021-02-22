@@ -45,7 +45,7 @@ public class Reservation {
 		
 		Random random = new Random();
 		
-		car.setMilage(1+random.nextInt(499));
+		car.setMilage(car.getMilage() + 1+random.nextInt(499));
 	}
 	/**
 	 * Updates information about mileage, drop off date and drop off office 
