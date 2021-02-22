@@ -131,7 +131,7 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 
 
 		// Check car is avaialbe when period before reservation
-		assertTrue(office.searchCars(pickUpDate.minusDays(100), dropOffDate.minusDays(100).size()==1);
+		assertTrue(office.searchCars(pickUpDate.minusDays(100), dropOffDate.minusDays(100)).size()==1);
 
 		// Check car is avaialbe when period after reservation
 		assertTrue(office.searchCars(pickUpDate.plusDays(100), dropOffDate.plusDays(100)).size()==1);
@@ -144,14 +144,29 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 		assertTrue(office.searchCars(pickUpDate.plusDays(2), dropOffDate.plusDays(6)).size()==0);
 
 		// Check conflict when deliveryDueDate inside reservation
-		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.minusDays(2).size()==0);
+		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.minusDays(2)).size()==0);
 
 		// Check conflict when wanted period is inside reservation
-		assertTrue(office.searchCars(pickUpDate.plusDays(2), dropOffDate.minusDays(2).size()==0);
+		assertTrue(office.searchCars(pickUpDate.plusDays(2), dropOffDate.minusDays(2)).size()==0);
 
 		// Check conflict when reservation inside wanted period
-		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.plusDays(2).size()==0);
+		assertTrue(office.searchCars(pickUpDate.minusDays(2), dropOffDate.plusDays(2)).size()==0);
 
+
+
+
+	}
+
+	@Test
+	public void createReservation(){
+		CarRental emptyCarRental = new CarRental("Test Rental", 55555555, new ArrayList<Customer>(), new ArrayList<RentalOffice>(),Client.randomAddress());
+		emptyCarRental.getOffices().add(Client.randomOffice(0));
+
+		RentalOffice office = emptyCarRental.getOffices().get(0);
+		office.getCarPark().add(Client.randomCar());
+		Reservation reservation = office.createReservation(0,office.getCarPark().get(0),Client.randomCustomer(), LocalDateTime.now(),LocalDateTime.now().plusDays(6));
+
+		assertTrue(office.getReservations().contains(reservation));
 
 
 
