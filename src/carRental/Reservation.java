@@ -3,7 +3,7 @@ package carRental;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class Reservation {
+public class Reservation { 
 
 	private int reservationId; 
 	private Customer customer;
