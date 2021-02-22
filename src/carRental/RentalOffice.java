@@ -34,11 +34,11 @@ public class RentalOffice {
 	
 	/**
 	 * Search through an office car park and remove cars from the list that is reserved for the given time
-	 * @param pickUpTime
+	 * @param pickUpDate
 	 * @param deliveryDueDate
 	 * @return a list of available cars
 	 */
-	public ArrayList<Car> searchCars(LocalDateTime pickUpTime, LocalDateTime deliveryDueDate) {
+	public ArrayList<Car> searchCars(LocalDateTime pickUpDate, LocalDateTime deliveryDueDate) {
 		ArrayList<Car> carSet = new ArrayList<Car>(carPark);
 		System.out.println(carSet.size());
         for (Reservation reservation : reservations) {
@@ -46,15 +46,15 @@ public class RentalOffice {
             // Only need to check cars still in carSet
             if (carSet.contains(reservation.getCar())) {
 
-				if (pickUpTime.isAfter(reservation.getPickUpDate()) && pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
+				if (pickUpDate.isAfter(reservation.getPickUpDate()) && pickUpDate.isBefore(reservation.getDeliveryDueDate())) { // check if pickUpTime is inside already reserved date
 					carSet.remove(reservation.getCar());
-					System.out.println("conflict pickup\n new pickuptime" + pickUpTime.toString()
+					System.out.println("conflict pickup\n new pickuptime" + pickUpDate.toString()
 							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
 							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
-				if (deliveryDueDate.isAfter(reservation.getPickUpDate()) && deliveryDueDate.isBefore(reservation.getDeliveryDueDate())) {
+				if (deliveryDueDate.isAfter(reservation.getPickUpDate()) && deliveryDueDate.isBefore(reservation.getDeliveryDueDate())) { // check if deliveryDate is inside already reserved date
 					carSet.remove(reservation.getCar());
 					System.out.println("conflict delivery\n new deliverytime" + deliveryDueDate.toString()
 							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
@@ -62,15 +62,37 @@ public class RentalOffice {
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
-				if (pickUpTime.isBefore(reservation.getPickUpDate()) && deliveryDueDate.isAfter(reservation.getDeliveryDueDate())) {
+				if (pickUpDate.isBefore(reservation.getPickUpDate()) && deliveryDueDate.isAfter(reservation.getDeliveryDueDate())) { // check if already reserved date is inside planned reservation
 					carSet.remove(reservation.getCar());
 					System.out.println("conflict long reservation\n new deliverytime" + deliveryDueDate.toString()
-							+ "\n new pickuptime" + pickUpTime.toString()
+							+ "\n new pickuptime" + pickUpDate.toString()
 							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
 							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
+				/*
+				*test if planned reservation is equal to delivery date or pick up date
+				* doesn't work
+
+				if (deliveryDueDate.isEqual(reservation.getPickUpDate()) || pickUpDate.isEqual(reservation.getPickUpDate())) { // check if pickUpTime or deliveryDueDate is equal to already reserved pickUpDate
+					carSet.remove(reservation.getCar());
+					System.out.println("conflict  pickuptime\n new pickuptime" + pickUpDate.toString()
+							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
+							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
+							+ "\n" + reservation.getCar().toString());
+					continue;
+
+				}
+				if (deliveryDueDate.isEqual(reservation.getDeliveryDueDate()) || pickUpDate.isEqual(reservation.getDeliveryDueDate())) { // check if pickUpTime or deliveryDueDate is equal to already reserved pickUpDate
+					carSet.remove(reservation.getCar());
+					System.out.println("conflict delivery\n new deliverytime" + deliveryDueDate.toString()
+							+ "\n reservation pickuptime " + reservation.getPickUpDate().toString()
+							+ "\n reservation dropoff" + reservation.getDeliveryDueDate().toString()
+							+ "\n" + reservation.getCar().toString());
+					continue;
+				}
+				*/
             }
         }
 
