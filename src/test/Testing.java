@@ -207,6 +207,8 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 		Reservation reservation = carRental.getReservationsMap().get(reservationID);
 		carRental.pickUpCar(reservationID);
 		assertTrue(carRental.dropOffCar(reservationID)==8000);
+		assertTrue(office.getReservations().size()==0);
+		assertTrue(office.getReservationArchive().size()==1);
 
 
 	}
