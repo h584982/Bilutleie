@@ -141,7 +141,9 @@ public class Client { //main method
 
 
     private static void pickUpSession(CarRental carRental) {
+
         Scanner input = new Scanner(System.in);
+
         while (true) {
             System.out.println("Enter ReservationID: ");
             String reply = validateIntInput(carRental, input, carRental.getReservationsMap().size());
@@ -150,19 +152,29 @@ public class Client { //main method
 
             boolean hasCreditCard = carRental.pickUpCar(reservationID);
             if (hasCreditCard) {
-                System.out.println("Car pick up complete");
+                System.out.println("Car pick up complete\n");
 
                 break;
             }
-            System.out.println("No creditcard information found");
-            System.out.println("Please enter credit information, or 'c' for cancel");
-            String creditcard = input.next();
-            if (creditcard.equals("c")) {
-                System.out.println("pickup failed");
-                break;
+
+            while (true) {
+
+                System.out.println("No creditcard information found");
+                System.out.println("Please enter credit information, or 'c' for cancel");
+                String creditcard = input.next();
+
+                if (creditcard.equals("c")) {
+                    System.out.println("pickup failed");
+                    break;
+                } else if (creditcard.length() == 16) {
+                    System.out.println("Invalid creditcard information - try again");
+                } else {
+
+                    carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
+                    System.out.println(carRental.getReservationsMap().get(reservationID).toString());
+                    System.out.println("Car pick up complete\n");
+                }
             }
-            carRental.getReservationsMap().get(reservationID).getCustomer().setCardNumber(Long.parseLong(creditcard));
-            System.out.println(carRental.getReservationsMap().get(reservationID).toString());
             break;
         }
 
