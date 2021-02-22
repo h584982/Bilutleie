@@ -19,34 +19,17 @@ import carRental.Reservation;
 import carRental.Client;
 
 class Testing {
-
-//	@Test
-//	void test() {
-//		fail("Not yet implemented");
-//	}
+	
 	
 	  private RentalOffice rentalOffice = new RentalOffice();
 	  private CarRental carRental=null;
-	  
-
 
 
 	  @BeforeEach
 	  public void setUp() {
 		  
 	  carRental=Client.setupCarRental();
-
-/*
-CarRental carRental = new CarRental("Bertel O. Steen", 11223344, null, null, new Address("Bilveien 1", 5053, "Bergen"));
-tesla = new Car("EV99999", "Tesla", "Model X", "Hvit",'B', 0);
-List<Car> cars = new ArrayList<>();
-cars.add(tesla);
-RentalOffice rentalOffice = new RentalOffice(1, new Address("Fyllingenveien 3", 5143, "Fyllingsdalen"), 99988877, cars);
-customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "Kronstad"), 99922233);
- Reservation r = carRental.pickUpCar(rentalOffice, tesla, customer,  .parseDato("01.01.2021"), .parseDato("02.01.2021"), "123");
- System.out.println(r);
-	    
-	    */
+	  
 	  }
 	
 	@Test
@@ -61,9 +44,22 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 	@Test
 	public void pickUpCar() {
 		
-		 boolean reservation = carRental.pickUpCar(0);
+		LocalDateTime pickUpDate=LocalDateTime.of(2021, 2, 25, 14, 30);
+		LocalDateTime dropOffDate=pickUpDate.plusDays(5);
+		RentalOffice office=carRental.getOffices().get(0);
+		office.setReservations(new ArrayList<Reservation>());
 		
-
+		Car car=office.searchCars(pickUpDate, dropOffDate).get(0);
+		Customer customer=Client.randomCustomer();
+		
+		Integer reservationID= carRental.makeReservation(office, car, customer,pickUpDate, dropOffDate);
+		Reservation reservation=carRental.getReservationsMap().get(reservationID);
+		
+	//	boolean reservation = carRental.pickUpCar(0);
+		 
+	//	 RentalOffice office = offices.get(reservation.getPickUpOffice());
+		 
+	//	 Reservation reservation = rentalOffice.getReservations().get(0);
 		
 		    assertTrue(rentalOffice.getReservations().contains(reservation));
 		    assertTrue(rentalOffice.getReservations() != null);
@@ -74,13 +70,23 @@ customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "
 	@Test
 	public void dropOffCar() {
 		
-		 Reservation reservation = rentalOffice.getReservations().get(0);
-		    
+		LocalDateTime pickUpDate=LocalDateTime.of(2021, 2, 25, 14, 30);
+		LocalDateTime dropOffDate=pickUpDate.plusDays(5);
+		RentalOffice office=carRental.getOffices().get(0);
+		office.setReservations(new ArrayList<Reservation>());
+		
+		Car car=office.searchCars(pickUpDate, dropOffDate).get(0);
+		Customer customer=Client.randomCustomer();
+		
+		Integer reservationID= carRental.makeReservation(office, car, customer,pickUpDate, dropOffDate);
+		Reservation reservation=carRental.getReservationsMap().get(reservationID);
+		
+	//	Reservation reservation = rentalOffice.getReservations().get(0);
+		
 		 carRental.dropOffCar(reservation.getReservationId());
 
-		    assertFalse(rentalOffice.getReservations().contains(reservation));
-		    assertTrue(rentalOffice.getReservations() == null);
-		    
+		   assertFalse(rentalOffice.getReservations().contains(reservation));
+		   assertTrue(rentalOffice.getReservations() == null);
 		
 	}
 	
