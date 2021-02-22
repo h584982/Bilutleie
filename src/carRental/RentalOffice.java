@@ -1,13 +1,9 @@
 package carRental;
 
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RentalOffice {
 	
@@ -75,15 +71,6 @@ public class RentalOffice {
 							+ "\n" + reservation.getCar().toString());
 					continue;
 				}
-
-
-/*
-                if (pickUpTime.isBefore(reservation.getPickUpDate()) || pickUpTime.isBefore(reservation.getDeliveryDueDate())) {
-                	if (delivieryDueDate.isBefore(reservation.getPickUpDate()) || delivieryDueDate.isBefore(reservation.getDeliveryDueDate())) {
-
-					}
-				}
-*/
             }
         }
 
@@ -115,7 +102,13 @@ public class RentalOffice {
 		reservation.activatePickUp();
 	}
 	
-	// Processs reservation, update reservations and reservationArchive, calculate and return price
+	/**
+	 * Processes a reservation by updating the given reservation and moving the reservation to archive
+	 * @param reservation
+	 * @param dropOffDate
+	 * @param dropOffOfficeId
+	 * @return calculated price for the reservation
+	 */
 	public int dropOffEvent(Reservation reservation, LocalDateTime dropOffDate, int dropOffOfficeId){
 		
 		//Checks if the car is returned to the same office, if not 1 day is added for transportation
@@ -137,7 +130,7 @@ public class RentalOffice {
 	/**
 	 * Calculates the price based on days rented for a given reservation
 	 * @param reservation
-	 * @return
+	 * @return calculated price
 	 */
 	private int calculatePrice(Reservation reservation) {
 		// Calculates the difference in time from pick up to delivery in hours
@@ -188,60 +181,11 @@ public class RentalOffice {
 	public void setReservationArchive(ArrayList<Reservation> reservationArchive) {
 		this.reservationArchive = reservationArchive;
 	}
-	public HashMap getPriceMap() {
+	public HashMap<Character, Integer> getPriceMap() {
 		return priceMap;
 	}
-	public void setPriceMap(HashMap priceMap) {
+	public void setPriceMap(HashMap<Character, Integer> priceMap) {
 		this.priceMap = priceMap;
 	}
-	
-	
-/*
-	Scanner scanner = new Scanner(System.in);
-
-	List<Car> cars = Arrays.asList(
-			new Car("EV99999", "Tesla", "Model S", "Rød", 'B', true),
-			new Car("EV99998", "Tesla", "Model X", "Hvit", 'A', true),
-			new Car("EV99997", "BMW", "i8", "Hvit", 'B', true),
-			new Car("EV99996", "BMW", "i3", "Blå", 'C', true),
-			new Car("EV99995", "Porsche", "Taycan", "Svart", 'C', true),
-			new Car("EV99994", "Porsche", "Taycan Turbo", "Blå", 'C', true)
-			);
-
-	public void chooseCar() {
-		String regex = "^[A-ZÆØÅa-zæøå ]+$";
-		System.out.println("Velkommen til bilutleie. Skriv inn hvilket bilmerke du vil leie:");
-
-		// sjekke alle bilmerker og skriver de ut
-		System.out.println(cars.stream().map(Car::getBrand).distinct().collect(Collectors.joining("\n")));
-
-		String carBrand = scanner.nextLine();
-
-		// while(!cars.stream()
-		// .map(Car::getBrand)
-		// .distinct()
-		// .collect(Collectors.joining("\n")).contains(carBrand)){
-		// System.out.println("Skriv inn et bilmerke som er tilgjengelig.");
-		// carBrand=scanner.nextLine();
-		// }
-
-		System.out.println("Skriv inn hvilken bilmodell du vil leie:");
-
-		// sjekke alle modeller til bilmerket og skrive de ut
-		System.out.println(cars.stream().filter(a -> a.getBrand().equals(carBrand)).map(Car::getModel)
-				.collect(Collectors.joining("\n")));
-		String carModel = scanner.nextLine();
-
-		System.out.println("Skriv inn hvilken farge på bilen du vil leie:");
-
-		// sjekke alle farger til valgt modell
-		System.out.println(cars.stream().filter(a -> a.getBrand().equals(carBrand) && a.getModel().equals(carModel))
-				.map(Car::getColor).collect(Collectors.joining("\n")));
-		String carColor = scanner.nextLine();
-
-		System.out.println("Leier ut bil ");
-
-	}
-	*/
 }
 	
