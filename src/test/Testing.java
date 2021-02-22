@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,18 +34,23 @@ class Testing {
 	  @BeforeEach
 	  public void setUp() {
 		  
-	   CarRental carRental = new CarRental("Bertel O. Steen", 11223344, null, null, new Address("Bilveien 1", 5053, "Bergen"));
-	    
-	   tesla = new Car("EV99999", "Tesla", "Model X", "Hvit",'B', 0);
-	   List<Car> cars = new ArrayList<>();
-	   cars.add(tesla);
+	  Client.setupCarRental();
 
-	   rentalOffice = new RentalOffice(1, new Address("Fyllingenveien 3", 5143, "Fyllingsdalen"), 99988877, cars);
-	   customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "Kronstad"), 99922233);
+/*
 
-	    Reservation r = carRental.pickUpCar(rentalOffice, tesla, customer, .parseDato("01.01.2021"), .parseDato("02.01.2021"), "123");
-	    System.out.println(r);
+CarRental carRental = new CarRental("Bertel O. Steen", 11223344, null, null, new Address("Bilveien 1", 5053, "Bergen"));
+
+tesla = new Car("EV99999", "Tesla", "Model X", "Hvit",'B', 0);
+List<Car> cars = new ArrayList<>();
+cars.add(tesla);
+
+RentalOffice rentalOffice = new RentalOffice(1, new Address("Fyllingenveien 3", 5143, "Fyllingsdalen"), 99988877, cars);
+customer = new Customer("Jan", "Paulsen", new Address("Kronstadveien 9", 5053, "Kronstad"), 99922233);
+
+ Reservation r = carRental.pickUpCar(rentalOffice, tesla, customer,  .parseDato("01.01.2021"), .parseDato("02.01.2021"), "123");
+ System.out.println(r);
 	    
+	    */
 	  }
 	
 	@Test
@@ -57,10 +63,10 @@ class Testing {
 	@Test
 	public void pickUpCar() {
 		
-		 Reservation reservation = carRental.pickUpCar(location, reservationID);
+		 boolean reservation = carRental.pickUpCar(0);
 
 		    assertTrue(rentalOffice.getReservations().contains(reservation));
-		    assertTrue(tesla.getReservations().contains(reservation));
+		    assertTrue(tesla.getReservation().contains(reservation));
 		    assertTrue(rentalOffice.getReservations() != null);
 
 	}
@@ -78,12 +84,19 @@ class Testing {
 		    assertTrue(rentalOffice.getReservations() == null);
 		    
 		
-		
 	}
 	
 	@Test
 	public void makeReservation() {
 		
+		Car b1 = new Car("BT54321", "Audi", "E-tron", "Grå", 'B', 0);
+		Reservation r1 = new Reservation();
+		
+		r1.makeReservation("Bertel O. Steen",b1, customer,pickUpDate, dropOffDate);
+		
+		
+		
+		assertFalse(b1.isAvailable());
 		
 	}
 
