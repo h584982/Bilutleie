@@ -34,7 +34,7 @@ class Testing {
 	  @BeforeEach
 	  public void setUp() {
 		  
-	  Client.setupCarRental();
+	  carRental=Client.setupCarRental();
 
 /*
 
